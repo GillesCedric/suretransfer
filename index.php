@@ -1,5 +1,5 @@
 <?php
-include('class/config.php');
+include('config.php');
 ?>
 <!DOCTYPE html>
 <html lang="fr">
