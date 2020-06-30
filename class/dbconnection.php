@@ -7,7 +7,7 @@ class DBConnection
 	private string $dbname;
 	private string $user;
 	private string $password;
-	public function __construct(string $host = 'localhost', string $port = '3308', string $dbname = 'contact', string $user = 'root', string $password = '')
+	public function __construct(string $host = 'localhost', string $port = '3308', string $dbname = 'suretranfer', string $user = 'root', string $password = '')
 	{
 		$this->host = $host;
 		$this->port = $port;
@@ -16,7 +16,7 @@ class DBConnection
 		$this->password = $password;
 	}
 
-	public function setConnection()
+	public function setConnection(): PDO
 	{
 		//try {
 		return new PDO("mysql:host=" . $this->host . ":" . $this->port . ";dbname=" . $this->dbname, $this->user, $this->password);
