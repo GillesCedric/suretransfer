@@ -10,7 +10,7 @@ include('config.php');
 	<title><?= APP_NAME ?></title>
 
 	<!-- Personalized CSS -->
-	<link type="text/css" rel="stylesheet" href="file/css/style.css">
+	<link type="text/css" rel="stylesheet" href="file/css/style-menu.css">
 
 	<!-- Bootstrap CSS -->
 	<link rel="stylesheet" href="file/css/bootstrap.min.css">
@@ -28,7 +28,6 @@ include('config.php');
 	<?php include('./section/nav.php'); ?>
 	<div id="main">
 		<div class="container my-4">
-
 			<div id="carouselExample1" class="carousel slide z-depth-1-half" data-ride="carousel">
 				<div class="carousel-inner">
 					<div class="carousel-item active">
