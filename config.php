@@ -14,6 +14,8 @@ define('CONTROLLERS_PATH', CLASS_PATH . '/controllers');
 
 define('MODELS_PATH', CLASS_PATH . '/models');
 
+define('SECTION_PATH', GLOBAL_PATH. '/section');
+
 define('HOST', '');
 
 define('DBNAME', '');
