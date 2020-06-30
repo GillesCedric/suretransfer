@@ -1,5 +1,5 @@
 <?php
-require('./Blueprint.php');
+require_once('Blueprint.php');
 abstract class Personne extends Blueprint
 {
 	protected string $numCni;

@@ -1,5 +1,5 @@
 <?php
-require('./utilisateur.php');
+require_once('utilisateur.php');
 abstract class Pompiste extends Utilisateur
 {
 	private int $numBox;
@@ -10,6 +10,24 @@ abstract class Pompiste extends Utilisateur
 		parent::__construct($mail, $login, $password, $numCni, $nom, $tel, $createdAt, $updatedAt);
 		$this->numBox = $numBox;
 		$this->isActivated = $isActivated;
+	}
+
+	public static function verifConnect(string $value, string $password)
+	{
+		$connection = new DBConnection(HOST, PORT, DBNAME, DBUSERNAME, DBPASSWORD);
+		$connection = $connection->setConnection();
+		$verif = $connection->prepare('SELECT * FROM pompiste WHERE login=? AND password=?');
+		$verif->execute(array($value, $password));
+		if ($verif->rowcount() == 1) {
+			return $verif;
+		}
+		return false;
+	}
+
+	public static function connect(string $numCni): void
+	{
+		App::addSession(array('client' => array('entreprise' => $numCni)));
+		App::redirect('');
 	}
 
 	public function getNumBox(): int

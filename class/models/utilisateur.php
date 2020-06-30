@@ -1,5 +1,5 @@
 <?php
-require('./personne.php');
+require_once('personne.php');
 abstract class Utilisateur extends Personne
 {
 	protected string $mail;
@@ -16,7 +16,7 @@ abstract class Utilisateur extends Personne
 
 	public abstract static function update(string ...$values);
 
-	public abstract static function connect(string $value, string $password): void;
+	public abstract static function connect(string $value): void;
 
-	public abstract static function verifConnect(string $value, string $password): bool;
+	public abstract static function verifConnect(string $value, string $password);
 }

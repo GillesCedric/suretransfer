@@ -1,21 +1,17 @@
 <?php
-require('../../../config.php');
-require(CLASS_PATH . '/dbconnection.php');
-require(CLASS_PATH . '/app.php');
+require_once(dirname(dirname(dirname(__DIR__))) . '/config.php');
+require_once(CLASS_PATH . '/dbconnection.php');
+require_once(CLASS_PATH . '/app.php');
 abstract class Connection
 {
-	protected string $_password;
-	protected string $_login;
-	protected PDO $_connection;
+	protected string $password;
+	protected string $login;
 
 	public function __construct(string $login, string $password)
 	{
-		$this->_login = $login;
-		$this->_password = $password;
-		$this->_connection = new DBConnection();
+		$this->login = htmlspecialchars($login);
+		$this->password = htmlspecialchars(md5($login));
 	}
-
-	public abstract function verifUser(): bool;
 
 	protected function connect(array $values, string $location): void
 	{

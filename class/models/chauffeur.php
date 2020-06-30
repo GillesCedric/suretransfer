@@ -1,5 +1,5 @@
 <?php
-require('./personne.php');
+require('personne.php');
 abstract class Chauffeur extends Personne
 {
 	protected string $prenom;

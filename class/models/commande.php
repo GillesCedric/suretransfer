@@ -1,5 +1,5 @@
 <?php
-require('./autre.php');
+require_once('autre.php');
 abstract class Commande extends Autre
 {
 	protected string $statut;

@@ -1,5 +1,5 @@
 <?php
-include('config.php');
+require_once('config.php');
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -28,7 +28,7 @@ include('config.php');
 </head>
 
 <body>
-  <?php include('./section/nav.php'); ?>
+  <?php require_once('./section/nav.php'); ?>
   <div id="main">
     <div class="text-center" style="margin-top:30px;">
       <img src="imageindex/suretransfer.jpg" style="border-radius:50%;" alt="..." width="150px" height="150px">

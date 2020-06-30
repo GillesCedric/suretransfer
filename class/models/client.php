@@ -1,7 +1,7 @@
 <?php
-require('./utilisateur.php');
-require('../../config.php');
-require('../dbconnection.php');
+require_once('utilisateur.php');
+require_once('../../config.php');
+require_once(CLASS_PATH . '/dbconnection.php');
 abstract class Client extends Utilisateur
 {
 	protected string $prenom;
@@ -22,20 +22,21 @@ abstract class Client extends Utilisateur
 		$insert = $insert->execute(array());
 	}
 
-	public function verifConnect(string $value, string $password): bool
+	public static function verifConnect(string $value, string $password)
 	{
 		$connection = new DBConnection(HOST, PORT, DBNAME, DBUSERNAME, DBPASSWORD);
 		$connection = $connection->setConnection();
 		$verif = $connection->prepare('SELECT * FROM client WHERE login=? OR mail=? AND password=?');
 		$verif->execute(array($value, $value, $password));
 		if ($verif->rowcount() == 1) {
-			return true;
+			return $verif;
 		}
 		return false;
 	}
 
-	public function connect(string $value, string $password): void
+	public static function connect(string $numCni): void
 	{
-		App::addSession(array('client' => $value));
+		App::addSession(array('client' => array('entreprise' => $numCni)));
+		App::redirect('');
 	}
 }

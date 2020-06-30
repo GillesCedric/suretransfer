@@ -1,5 +1,5 @@
 <?php
-require('./Blueprint.php');
+require('.blueprint.php');
 abstract class Autre extends Blueprint
 {
 	protected int $montant;

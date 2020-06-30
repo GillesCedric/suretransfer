@@ -37,4 +37,13 @@ final class App
 			session_destroy();
 		}
 	}
+
+	static function error(string $msg)
+	{
+		// echo ("<script type='text/javascript'>
+		// alert('" . $msg . "');</script>");
+		echo ("
+		
+		");
+	}
 }
