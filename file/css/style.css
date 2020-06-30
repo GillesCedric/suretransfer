@@ -6,7 +6,7 @@
 
 body{
     font-family: 'Poppins', sans-serif;
-    overflow: hidden;
+    
 }
 
 .wave{
@@ -141,6 +141,25 @@ form{
 	font-size: 1.2rem;
 	color: #555;
 	font-family: 'poppins', sans-serif;
+}
+.input-di{
+	font-size:1.2rem;
+	margin-top: 50px;
+}
+.di.radio:focus{
+	color: #38d39f;
+}
+.di.radio:hover{
+	background-color: #38d39f;
+}
+.input-di:before, .input-di:after{
+	content: '';
+	position: absolute;
+	bottom: -2px;
+	width: 0%;
+	height: 2px;
+	background-color: #38d39f;
+	transition: .4s;
 }
 
 .input-div.pass{
