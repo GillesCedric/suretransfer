@@ -1,8 +1,14 @@
 <?php
 require_once("../../config.php");
 require_once(CONTROLLERS_PATH . '/client/clientcommandes.php');
-// $commandes = new ClientCommandes($numCni);
-// $commandes = $commandes->get();
+$commandes = new ClientCommandes('21452565415');
+$nbCommandeMois = $commandes->getDepensesMois();
+$nbCommandeMois = $commandes->getDepensesMois();
+$nbCommandeAnne = $commandes->getDepensesAnne();
+$nbCommande = $commandes->getNBCommande('en attente');
+$nbCommandetotal = $commandes->getNBCommande();
+$nbVehicule = $commandes->getNBVehicule();
+$nbChauffeur = $commandes->getNBChauffeur();
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -347,7 +353,17 @@ require_once(CONTROLLERS_PATH . '/client/clientcommandes.php');
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                       <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Dépenses (Mensuel)</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">$0,000</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800">
+                        <?php if ($nbCommandeMois !== false) {
+                          $nbCommandeMois = $nbCommandeMois->fetch();
+                          echo ($nbCommandeMois['montant'] > 0 ? $nbCommandeMois['montant'] : 0);
+                          echo (' Fcfa');
+                        } else {
+                          echo ('0');
+                          echo (' Fcfa');
+                        }
+                        ?>
+                      </div>
                     </div>
                     <div class="col-auto">
                       <i class="fas fa-calendar fa-2x text-gray-300"></i>
@@ -364,7 +380,17 @@ require_once(CONTROLLERS_PATH . '/client/clientcommandes.php');
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                       <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Dépenses (Annuel)</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">$0,000</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800">
+                        <?php if ($nbCommandeAnne !== false) {
+                          $nbCommandeAnne = $nbCommandeAnne->fetch();
+                          echo ($nbCommandeAnne['montant'] > 0 ? $nbCommandeAnne['montant'] : 0);
+                          echo (' Fcfa');
+                        } else {
+                          echo ('0');
+                          echo (' Fcfa');
+                        }
+                        ?>
+                      </div>
                     </div>
                     <div class="col-auto">
                       <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
@@ -380,10 +406,18 @@ require_once(CONTROLLERS_PATH . '/client/clientcommandes.php');
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Taches</div>
+                      <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Commande total</div>
                       <div class="row no-gutters align-items-center">
                         <div class="col-auto">
-                          <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">0%</div>
+                          <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">
+                            <?php if ($nbCommandetotal !== false) {
+                              $nbCommandetotal = $nbCommandetotal->fetch();
+                              echo ($nbCommandetotal['nbcommande'] > 0 ? $nbCommandetotal['nbcommande'] : 0);
+                            } else {
+                              echo ('0');
+                            }
+                            ?>
+                          </div>
                         </div>
                         <div class="col">
                           <div class="progress progress-sm mr-2">
@@ -406,8 +440,16 @@ require_once(CONTROLLERS_PATH . '/client/clientcommandes.php');
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Requettes en attente</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">0</div>
+                      <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Commande en attente</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800">
+                        <?php if ($nbCommande !== false) {
+                          $nbCommande = $nbCommande->fetch();
+                          echo ($nbCommande['nbcommande'] > 0 ? $nbCommande['nbcommande'] : 0);
+                        } else {
+                          echo ('0');
+                        }
+                        ?>
+                      </div>
                     </div>
                     <div class="col-auto">
                       <i class="fas fa-comments fa-2x text-gray-300"></i>
@@ -476,8 +518,16 @@ require_once(CONTROLLERS_PATH . '/client/clientcommandes.php');
                     <div class="card-body">
                       <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
-                          <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Total des véhicules</div>
-                          <div class="h5 mb-0 font-weight-bold text-gray-800">0</div>
+                          <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Nombre de véhicule</div>
+                          <div class="h5 mb-0 font-weight-bold text-gray-800">
+                            <?php if ($nbVehicule !== false) {
+                              $nbVehicule = $nbVehicule->fetch();
+                              echo ($nbVehicule['nbvehicule'] > 0 ? $nbVehicule['nbvehicule'] : 0);
+                            } else {
+                              echo ('0');
+                            }
+                            ?>
+                          </div>
                         </div>
                         <div class="col-auto">
                           <i class="fas fa-car fa-2x text-gray-300"></i>
@@ -490,8 +540,16 @@ require_once(CONTROLLERS_PATH . '/client/clientcommandes.php');
                     <div class="card-body">
                       <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
-                          <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Total des chauffeurs</div>
-                          <div class="h5 mb-0 font-weight-bold text-gray-800">0</div>
+                          <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Nombre de chauffeur</div>
+                          <div class="h5 mb-0 font-weight-bold text-gray-800">
+                            <?php if ($nbChauffeur !== false) {
+                              $nbChauffeur = $nbChauffeur->fetch();
+                              echo ($nbChauffeur['nbchauffeur'] > 0 ? $nbChauffeur['nbchauffeur'] : 0);
+                            } else {
+                              echo ('0');
+                            }
+                            ?>
+                          </div>
                         </div>
                         <div class="col-auto">
                           <i class="fas fa-drivers fa-2x text-gray-300"></i>

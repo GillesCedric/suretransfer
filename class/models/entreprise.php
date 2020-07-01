@@ -1,5 +1,4 @@
 <?php
-require_once('Blueprint.php');
 class Entreprise
 {
 	protected string $nom;
@@ -15,5 +14,10 @@ class Entreprise
 		$this->quartier = $quartier;
 		$this->tel = $tel;
 		$this->mail = $mail;
+	}
+
+	public static function get()
+	{
+		# code...
 	}
 }

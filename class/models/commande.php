@@ -31,4 +31,52 @@ class Commande extends Autre
 		}
 		return false;
 	}
+
+	public static function getDepensesMois(string $val)
+	{
+
+		$connection = new DBConnection(HOST, PORT, DBNAME, DBUSERNAME, DBPASSWORD);
+		$connection = $connection->setConnection();
+		$get = $connection->prepare('SELECT SUM(montant) AS montant FROM commande WHERE num_cni_client=? AND created_at BETWEEN ? AND ?');
+		$dateDebut = date('Y-m') . '-01 00:00:00';
+		$dateFin =  date('Y-m-t') . ' 23:59:59';
+		$get->execute(array($val, $dateDebut, $dateFin));
+		if ($get->rowCount() > 0) {
+			return $get;
+		}
+		return false;
+	}
+
+	public static function getDepensesAnne(string $val)
+	{
+
+		$connection = new DBConnection(HOST, PORT, DBNAME, DBUSERNAME, DBPASSWORD);
+		$connection = $connection->setConnection();
+		$get = $connection->prepare('SELECT SUM(montant) AS montant FROM commande WHERE num_cni_client=? AND created_at BETWEEN ? AND ?');
+		$dateDebut = date('Y') . '-01-01 00:00:00';
+		$dateFin =  date('Y') . '-12-' . date('t') . ' 23:59:59';
+		$get->execute(array($val, $dateDebut, $dateFin));
+		if ($get->rowCount() > 0) {
+			return $get;
+		}
+		return false;
+	}
+
+	public static function getNBCommande(string $val, string $statut = null)
+	{
+
+		$connection = new DBConnection(HOST, PORT, DBNAME, DBUSERNAME, DBPASSWORD);
+		$connection = $connection->setConnection();
+		if ($statut !== null) {
+			$get = $connection->prepare('SELECT COUNT(num_commande) AS nbcommande FROM commande WHERE num_cni_client=? AND statut=?');
+			$get->execute(array($val, $statut));
+		} else {
+			$get = $connection->prepare('SELECT COUNT(num_commande) AS nbcommande FROM commande WHERE num_cni_client=?');
+			$get->execute(array($val));
+		}
+		if ($get->rowCount() > 0) {
+			return $get;
+		}
+		return false;
+	}
 }
