@@ -1,4 +1,9 @@
-<?php include("../../config.php") ?>
+<?php
+require_once("../../config.php");
+require_once(CONTROLLERS_PATH . '/client/clientcommandes.php');
+// $commandes = new ClientCommandes($numCni);
+// $commandes = $commandes->get();
+?>
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -104,7 +109,7 @@
         <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Fonctionnalités:</h6>
-           <!-- <a class="collapse-item" href="login.html">Passer une commande</a>-->
+            <!-- <a class="collapse-item" href="login.html">Passer une commande</a>-->
             <a class="collapse-item" href="vehicules.php">Mes véhicules</a>
             <a class="collapse-item" href="chauffeurs.php">Mes chauffeurs</a>
             <div class="collapse-divider"></div>
@@ -238,14 +243,14 @@
             </li>
 
             <!-- Nav Item - Messages -->
-           <!-- <li class="nav-item dropdown no-arrow mx-1">
+            <!-- <li class="nav-item dropdown no-arrow mx-1">
               <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <i class="fas fa-envelope fa-fw"></i>-->
-                <!-- Counter - Messages -->
-               <!-- <span class="badge badge-danger badge-counter">7</span>
+            <!-- Counter - Messages -->
+            <!-- <span class="badge badge-danger badge-counter">7</span>
               </a>-->
-              <!-- Dropdown - Messages -->
-              <!--<div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="messagesDropdown">
+            <!-- Dropdown - Messages -->
+            <!--<div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="messagesDropdown">
                 <h6 class="dropdown-header">
                   Message Center
                 </h6>
@@ -467,19 +472,19 @@
                 <!-- Card Body -->
                 <div class="card-body">
                   <!--total chauffeurs-->
-                    <div class="card border-left-info shadow h-100 py-2">
-                      <div class="card-body">
-                        <div class="row no-gutters align-items-center">
-                          <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Total des véhicules</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">0</div>
-                          </div>
-                          <div class="col-auto">
-                            <i class="fas fa-car fa-2x text-gray-300"></i>
-                          </div>
+                  <div class="card border-left-info shadow h-100 py-2">
+                    <div class="card-body">
+                      <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                          <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Total des véhicules</div>
+                          <div class="h5 mb-0 font-weight-bold text-gray-800">0</div>
+                        </div>
+                        <div class="col-auto">
+                          <i class="fas fa-car fa-2x text-gray-300"></i>
                         </div>
                       </div>
                     </div>
+                  </div>
                   <!--total vehicules-->
                   <div class="card border-left-success shadow h-100 py-2" style="margin-top: 20px;">
                     <div class="card-body">
@@ -495,13 +500,13 @@
                     </div>
                   </div>
                 </div>
-          </div>
+              </div>
 
-          <!-- Content Row -->
-         <!-- <div class="row">-->
+              <!-- Content Row -->
+              <!-- <div class="row">-->
 
-            <!-- Content Column -->
-             <!--<div class="col-lg-6 mb-4">-->
+              <!-- Content Column -->
+              <!--<div class="col-lg-6 mb-4">-->
 
               <!-- Project Card Example -->
               <!--<div class="card shadow mb-4">
@@ -633,67 +638,67 @@
           </div>
 
         </div>-->
-        <!-- /.container-fluid -->
+              <!-- /.container-fluid -->
 
-      </div>
-      <!-- End of Main Content -->
+            </div>
+            <!-- End of Main Content -->
 
-      <!-- Footer -->
-      <footer class="sticky-footer bg-white">
-        <div class="container my-auto">
-          <div class="copyright text-center my-auto">
-            <span>Copyright &copy; Sure Transfer</span>
+            <!-- Footer -->
+            <footer class="sticky-footer bg-white">
+              <div class="container my-auto">
+                <div class="copyright text-center my-auto">
+                  <span>Copyright &copy; Sure Transfer</span>
+                </div>
+              </div>
+            </footer>
+            <!-- End of Footer -->
+
+          </div>
+          <!-- End of Content Wrapper -->
+
+        </div>
+        <!-- End of Page Wrapper -->
+
+        <!-- Scroll to Top Button-->
+        <a class="scroll-to-top rounded" href="#page-top">
+          <i class="fas fa-angle-up"></i>
+        </a>
+
+        <!-- Logout Modal-->
+        <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Voulez-vous vous deconnecter?</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">×</span>
+                </button>
+              </div>
+              <div class="modal-body">Selectionnez "Deconnexion" pour arreter votre session.</div>
+              <div class="modal-footer">
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">Annuler</button>
+                <a class="btn btn-primary" href="login.html">Deconnexion</a>
+              </div>
+            </div>
           </div>
         </div>
-      </footer>
-      <!-- End of Footer -->
 
-    </div>
-    <!-- End of Content Wrapper -->
+        <!-- Bootstrap core JavaScript-->
+        <script src="vendor/jquery/jquery.min.js"></script>
+        <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-  </div>
-  <!-- End of Page Wrapper -->
+        <!-- Core plugin JavaScript-->
+        <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
-  <!-- Scroll to Top Button-->
-  <a class="scroll-to-top rounded" href="#page-top">
-    <i class="fas fa-angle-up"></i>
-  </a>
+        <!-- Custom scripts for all pages-->
+        <script src="js/sb-admin-2.min.js"></script>
 
-  <!-- Logout Modal-->
-  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Voulez-vous vous deconnecter?</h5>
-          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">×</span>
-          </button>
-        </div>
-        <div class="modal-body">Selectionnez "Deconnexion" pour arreter votre session.</div>
-        <div class="modal-footer">
-          <button class="btn btn-secondary" type="button" data-dismiss="modal">Annuler</button>
-          <a class="btn btn-primary" href="login.html">Deconnexion</a>
-        </div>
-      </div>
-    </div>
-  </div>
+        <!-- Page level plugins -->
+        <script src="vendor/chart.js/Chart.min.js"></script>
 
-  <!-- Bootstrap core JavaScript-->
-  <script src="vendor/jquery/jquery.min.js"></script>
-  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-  <!-- Core plugin JavaScript-->
-  <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
-
-  <!-- Custom scripts for all pages-->
-  <script src="js/sb-admin-2.min.js"></script>
-
-  <!-- Page level plugins -->
-  <script src="vendor/chart.js/Chart.min.js"></script>
-
-  <!-- Page level custom scripts -->
-  <script src="js/demo/chart-area-demo.js"></script>
-  <script src="js/demo/chart-pie-demo.js"></script>
+        <!-- Page level custom scripts -->
+        <script src="js/demo/chart-area-demo.js"></script>
+        <script src="js/demo/chart-pie-demo.js"></script>
 
 </body>
 
