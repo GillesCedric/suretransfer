@@ -388,7 +388,7 @@ $commandes = $commandes->get();
                       <?php endwhile; ?>
                     <?php else : ?>
                       <tr align="center">
-                        <td colspan="7">Aucune commandes pour l'instant</td>
+                        <td colspan="7">Aucune commande pour l'instant</td>
                       </tr>
                     <?php endif; ?>
                   </tbody>
