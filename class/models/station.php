@@ -1,6 +1,6 @@
 <?php
-require_once('station.php');
-abstract class Station extends Utilisateur
+require_once('utilisateur.php');
+class Station extends Utilisateur
 {
 	protected bool $isVerified;
 
@@ -26,5 +26,25 @@ abstract class Station extends Utilisateur
 	{
 		App::addSession(array('client' => array('entreprise' => $numCni)));
 		App::redirect('');
+	}
+
+	public static function update(string ...$values)
+	{
+	}
+
+	public static function delete(string $numCni)
+	{
+	}
+
+	public static function get(string $numCni)
+	{
+	}
+
+	public function insert()
+	{
+	}
+
+	public static function getAll()
+	{
 	}
 }

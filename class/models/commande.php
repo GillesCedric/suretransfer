@@ -1,6 +1,6 @@
 <?php
 require_once('autre.php');
-abstract class Commande extends Autre
+class Commande extends Autre
 {
 	protected string $statut;
 	protected string $numCommande;

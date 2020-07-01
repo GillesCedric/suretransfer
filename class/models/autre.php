@@ -1,12 +1,11 @@
 <?php
 require('.blueprint.php');
-abstract class Autre extends Blueprint
+abstract class Autre
 {
 	protected int $montant;
 
 	public function __construct(int $montant, int $created_at, int $updated_at)
 	{
-		parent::__construct($created_at, $updated_at);
 		$this->tel = $montant;
 	}
 

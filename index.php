@@ -84,16 +84,13 @@ require_once('config.php');
     </div>-->
     <div class="text-center">
       <div class="row">
-        <div class="col-md-3" id="block1">
-          <a href="client/particulier/connexion.php"> <button class="btn btn-info" style="cursor:pointer;color:white;width:180px;margin-top:20px;font-size:25px;font-family:"><span class="fas fa-car" style="margin-right:15px;"></span>Particulier</button></a>
+        <div class="col-md-4" id="block2">
+          <a href="client/connexion.php"> <button class="btn btn-info" style="cursor:pointer;color:white;width:180px;margin-top:20px;font-size:25px;font-family:;"><span class="fas fa-user-tie" style="margin-right:15px;"></span>Client</button></a>
         </div>
-        <div class="col-md-3" id="block2">
-          <a href="client/entreprise/connexion.php"> <button class="btn btn-info" style="cursor:pointer;color:white;width:180px;margin-top:20px;font-size:25px;font-family:;"><span class="fas fa-user-tie" style="margin-right:15px;"></span>Entreprise</button></a>
+        <div class="col-md-4" id="block3">
+          <a href="station/annexe/connexion.php"> <button class="btn btn-info" style="cursor:pointer;color:white;width:180px;margin-top:20px;font-size:25px;font-family:;"><span class="fas fa-gas-pump" style="margin-right:15px;margin-left:-30px;"></span>Station</button></a>
         </div>
-        <div class="col-md-3" id="block3">
-          <a href="station/admin/connexion.php"> <button class="btn btn-info" style="cursor:pointer;color:white;width:180px;margin-top:20px;font-size:25px;font-family:;"><span class="fas fa-gas-pump" style="margin-right:15px;margin-left:-30px;"></span>Station</button></a>
-        </div>
-        <div class="col-md-3" id="block4">
+        <div class="col-md-4" id="block4">
           <a href="station/pompiste/connexion.php"> <button class="btn btn-info" style="cursor:pointer;color:white;width:180px;margin-top:20px;font-size:25px;font-family:;"><span class="fas fa-hard-hat" style="margin-right:15px;"></span>Pompiste</button></a>
         </div>
       </div>
@@ -133,8 +130,7 @@ require_once('config.php');
   <!--/.Carousel Wrapper-->
   <!--<span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; open</span>
 	</div>-->
-
+  <?php include('./section/footer.php'); ?>
 </body>
 
 </html>
-<?php include('./section/footer.php'); ?>

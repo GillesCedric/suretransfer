@@ -1,6 +1,6 @@
 <?php
 require('personne.php');
-abstract class Chauffeur extends Personne
+class Chauffeur extends Personne
 {
 	protected string $prenom;
 

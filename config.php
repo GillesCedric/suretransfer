@@ -16,6 +16,8 @@ define('MODELS_PATH', CLASS_PATH . '/models');
 
 define('SECTION_PATH', GLOBAL_PATH . '/section');
 
+define('FILE_PATH', GLOBAL_PATH . '/file');
+
 define('HOST', 'localhost');
 
 define('PORT', '3308');

@@ -1,6 +1,6 @@
 <?php
 require_once('utilisateur.php');
-abstract class Pompiste extends Utilisateur
+class Pompiste extends Utilisateur
 {
 	private int $numBox;
 	private bool $isActivated;
@@ -26,8 +26,28 @@ abstract class Pompiste extends Utilisateur
 
 	public static function connect(string $numCni): void
 	{
-		App::addSession(array('client' => array('entreprise' => $numCni)));
+		App::addSession(array('station' => array('pompiste' => $numCni)));
 		App::redirect('');
+	}
+
+	public static function update(string ...$values)
+	{
+	}
+
+	public static function delete(string $numCni)
+	{
+	}
+
+	public static function get(string $numCni)
+	{
+	}
+
+	public function insert()
+	{
+	}
+
+	public static function getAll()
+	{
 	}
 
 	public function getNumBox(): int

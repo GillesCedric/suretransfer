@@ -1,20 +1,19 @@
 <?php
-require_once(dirname(dirname(dirname(__DIR__))) . '\config.php');
-require_once(CONTROLLERS_PATH . '/abstract/connection.php');
+require_once(dirname(dirname(dirname(dirname(__DIR__)))) . '\config.php');
 require_once(CLASS_PATH . '/dbconnection.php');
-require_once(MODELS_PATH . '/client.php');
+require_once(CONTROLLERS_PATH . '/abstract/connection.php');
+require_once(MODELS_PATH . '/station.php');
 
-class ClientConnection extends Connection
+class StationConnection extends Connection
 {
 	public function __construct(string $login, string $password)
 	{
 		parent::__construct($login, $password);
 		if (!empty($this->login) && !empty($this->password)) {
-			$client = Client::verifConnect($this->login, $this->password);
+			$client = Station::verifConnect($this->login, $this->password);
 			if ($client !== false) {
 				$client = $client->fetch();
-				Client::connect($client['num_cni']);
-				App::redirect('');
+				Station::connect($client['num_cni']);
 			} else {
 				App::error('Login et/ou mot de passe incorrect');
 			}

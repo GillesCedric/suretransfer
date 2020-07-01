@@ -1,25 +1,49 @@
 <?php
 require_once('utilisateur.php');
-require_once('../../config.php');
+require_once('../config.php');
 require_once(CLASS_PATH . '/dbconnection.php');
-abstract class Client extends Utilisateur
+class Client extends Utilisateur
 {
 	protected string $prenom;
-	protected bool $isVerified;
+	private string $statut;
 
-	public function __construct(string $prenom, bool $isVerified, string $mail, string $login, string $password, string $numCni, string $nom, string $tel, int $createdAt, int $updatedAt)
+	public function __construct(string $prenom, string $mail, string $login, string $password, string $numCni, string $nom, string $tel, string $statut)
 	{
-		parent::__construct($mail, $login, $password, $numCni, $nom, $tel, $createdAt, $updatedAt);
+		parent::__construct($mail, $login, $password, $numCni, $nom, $tel);
 		$this->prenom = $prenom;
-		$this->isVerified = $isVerified;
+		$this->statut = $statut;
 	}
 
 	public function insert()
 	{
 		$connection = new DBConnection(HOST, PORT, DBNAME, DBUSERNAME, DBPASSWORD);
 		$connection = $connection->setConnection();
-		$insert = $connection->prepare('INSERT INTO client() VALUES ()');
-		$insert = $insert->execute(array());
+		$insert = $connection->prepare('INSERT INTO client(num_cni,nom,prenom,tel,mail,login,password,statut,created_at,updated_at) VALUES (?,?,?,?,?,?,?,?,?,?)');
+		$insert = $insert->execute(array($this->numCni, $this->nom, $this->prenom, $this->tel, $this->mail, $this->login, $this->password, $this->statut, time(), time()));
+	}
+
+	public static function verifLogin(string $login): bool
+	{
+		$connection = new DBConnection(HOST, PORT, DBNAME, DBUSERNAME, DBPASSWORD);
+		$connection = $connection->setConnection();
+		$verif = $connection->prepare('SELECT * FROM client WHERE login=?');
+		$verif->execute(array($login));
+		if ($verif->rowcount() == 0) {
+			return true;
+		}
+		return false;
+	}
+
+	public static function verifMail(string $login): bool
+	{
+		$connection = new DBConnection(HOST, PORT, DBNAME, DBUSERNAME, DBPASSWORD);
+		$connection = $connection->setConnection();
+		$verif = $connection->prepare('SELECT * FROM client WHERE login=?');
+		$verif->execute(array($login));
+		if ($verif->rowcount() == 0) {
+			return true;
+		}
+		return false;
 	}
 
 	public static function verifConnect(string $value, string $password)
@@ -38,5 +62,17 @@ abstract class Client extends Utilisateur
 	{
 		App::addSession(array('client' => array('entreprise' => $numCni)));
 		App::redirect('');
+	}
+
+	public static function update(string ...$values)
+	{
+	}
+
+	public static function delete(string $numCni)
+	{
+	}
+
+	public static function get(string $numCni)
+	{
 	}
 }

@@ -1,6 +1,6 @@
 <?php
 require_once('autre.php');
-abstract class Facture extends Autre
+class Facture extends Autre
 {
 	protected string $numFact;
 

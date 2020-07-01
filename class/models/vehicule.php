@@ -1,6 +1,6 @@
 <?php
 require_once('Blueprint.php');
-abstract class Entreprise extends Blueprint
+class Entreprise extends Blueprint
 {
 	protected string $immat;
 	protected string $marque;

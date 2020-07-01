@@ -1,14 +1,12 @@
 <?php
-require_once('Blueprint.php');
-abstract class Personne extends Blueprint
+abstract class Personne
 {
 	protected string $numCni;
 	protected string $nom;
 	protected string $tel;
 
-	public function __construct(string $numCni, string $nom, string $tel, int $createdAt, int $updatedAt)
+	public function __construct(string $numCni, string $nom, string $tel)
 	{
-		parent::__construct($createdAt, $updatedAt);
 		$this->numCni = $numCni;
 		$this->nom = $nom;
 		$this->tel = $tel;

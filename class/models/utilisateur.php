@@ -6,9 +6,9 @@ abstract class Utilisateur extends Personne
 	protected string $login;
 	protected string $password;
 
-	public function __construct(string $mail, string $login, string $password, string $numCni, string $nom, string $tel, int $createdAt, int $updatedAt)
+	public function __construct(string $mail, string $login, string $password, string $numCni, string $nom, string $tel)
 	{
-		parent::__construct($numCni, $nom, $tel, $createdAt, $updatedAt);
+		parent::__construct($numCni, $nom, $tel);
 		$this->mail = $mail;
 		$this->login = $login;
 		$this->password = $password;

@@ -1,8 +1,8 @@
 <?php
 require_once("../../config.php");
-require_once(CONTROLLERS_PATH . "/station/pompiste/pompisteconnection.php");
+require_once(CONTROLLERS_PATH . "/station/annexe/annexeconnection.php");
 if (isset($_POST['submit'])) {
-	$client = new PompisteConnection($_POST['login'], $_POST['password']);
+	$client = new AnnexeConnection($_POST['login'], $_POST['password']);
 }
 ?>
 <!DOCTYPE html>
