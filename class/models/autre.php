@@ -1,5 +1,4 @@
 <?php
-require('.blueprint.php');
 abstract class Autre
 {
 	protected int $montant;

@@ -327,7 +327,7 @@
 
 					<!-- Page Heading -->
 					<h1 class="h3 mb-2 text-gray-800">Mes chauffeurs</h1>
-					<p class="mb-4">Liste des tous vos chauffeurs inscrits sur cette plateforme. <a target="_blank" href="https://datatables.net">official DataTables documentation</a>.</p>
+					<p class="mb-4">Liste des tous vos chauffeurs inscrits sur cette plateforme.</p>
 					<a>Ajouter un nouveau chauffeur</a>
 
 					<!-- DataTales Example -->
