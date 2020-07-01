@@ -677,7 +677,7 @@ require_once(CONTROLLERS_PATH . '/client/clientcommandes.php');
               <div class="modal-body">Selectionnez "Deconnexion" pour arreter votre session.</div>
               <div class="modal-footer">
                 <button class="btn btn-secondary" type="button" data-dismiss="modal">Annuler</button>
-                <a class="btn btn-primary" href="login.html">Deconnexion</a>
+                <a class="btn btn-primary" href="../../pages/deconnexion.php">Deconnexion</a>
               </div>
             </div>
           </div>
