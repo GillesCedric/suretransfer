@@ -105,7 +105,7 @@
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Fonctionnalités:</h6>
            <!-- <a class="collapse-item" href="login.html">Passer une commande</a>-->
-            <a class="collapse-item" href="vehicules.php">Mes véhicules</a>
+            <a class="collapse-item" href="vehicules.php">Mes annexes</a>
             <a class="collapse-item" href="chauffeurs.php">Mes chauffeurs</a>
             <div class="collapse-divider"></div>
             <h6 class="collapse-header">Autres:</h6>
@@ -328,8 +328,8 @@
 
           <!-- Page Heading -->
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
-            <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
+            <h1 class="h3 mb-0 text-gray-800">Tableu de bord</h1>
+            <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generer un rapport</a>
           </div>
 
           <!-- Content Row -->
@@ -341,7 +341,7 @@
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Earnings (Monthly)</div>
+                      <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Vente (Mensuel)</div>
                       <div class="h5 mb-0 font-weight-bold text-gray-800">$40,000</div>
                     </div>
                     <div class="col-auto">
@@ -358,7 +358,7 @@
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Earnings (Annual)</div>
+                      <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Vente (Annuel)</div>
                       <div class="h5 mb-0 font-weight-bold text-gray-800">$215,000</div>
                     </div>
                     <div class="col-auto">
@@ -375,7 +375,7 @@
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Tasks</div>
+                      <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Total des commandes</div>
                       <div class="row no-gutters align-items-center">
                         <div class="col-auto">
                           <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">50%</div>
