@@ -14,7 +14,6 @@ class ClientConnection extends Connection
 			if ($client !== false) {
 				$client = $client->fetch();
 				Client::connect($client['num_cni']);
-				App::redirect('');
 			} else {
 				App::error('Login et/ou mot de passe incorrect');
 			}

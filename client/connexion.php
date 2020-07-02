@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once("../config.php");
 require_once(CONTROLLERS_PATH . "/client/clientconnection.php");
 require_once(CLASS_PATH . "/app.php");

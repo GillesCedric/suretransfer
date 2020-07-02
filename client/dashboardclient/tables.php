@@ -1,7 +1,8 @@
 <?php
+session_start();
 require_once("../../config.php");
 require_once(CONTROLLERS_PATH . '/client/clientcommandes.php');
-$commandes = new ClientCommandes('21452565415');
+$commandes = new ClientCommandes($_SESSION['client']);
 $client = $commandes->getClient();
 $commandes = $commandes->get();
 ?>
@@ -32,7 +33,7 @@ $commandes = $commandes->get();
 
 <body id="page-top">
 
- 
+
   <!-- Page Wrapper -->
   <div id="wrapper">
 
@@ -365,6 +366,7 @@ $commandes = $commandes->get();
                       <th>Immatriculation</th>
                       <th>Nom du chauffeur</th>
                       <th>Station</th>
+                      <th>Service</th>
                       <th>Statut</th>
                     </tr>
                   </thead>
@@ -390,6 +392,9 @@ $commandes = $commandes->get();
                           </td>
                           <td>
                             <?= $val['nomstation'] . ' ' . $val['quartier'] ?>
+                          </td>
+                          <td>
+                            <?= $val['service'] ?>
                           </td>
                           <td>
                             <?= $val['statut'] ?>

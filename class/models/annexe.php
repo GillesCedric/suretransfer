@@ -1,5 +1,5 @@
 <?php
-require('station.php');
+require_once('station.php');
 class Annexe extends Station
 {
 	private string $ville;
@@ -26,7 +26,7 @@ class Annexe extends Station
 
 	public static function connect(string $numCni): void
 	{
-		App::addSession(array('client' => array('entreprise' => $numCni)));
+		App::addSession(array('annexe' => $numCni));
 		App::redirect('');
 	}
 
@@ -46,7 +46,26 @@ class Annexe extends Station
 	{
 	}
 
+	public static function getAllByVille(string $ville)
+	{
+		$connection = new DBConnection(HOST, PORT, DBNAME, DBUSERNAME, DBPASSWORD);
+		$connection = $connection->setConnection();
+		$verif = $connection->prepare('SELECT * FROM annexe WHERE ville=?');
+		$verif->execute(array($ville));
+		if ($verif->rowcount() > 0) {
+			return true;
+		}
+		return false;
+	}
 	public static function getAll()
 	{
+		$connection = new DBConnection(HOST, PORT, DBNAME, DBUSERNAME, DBPASSWORD);
+		$connection = $connection->setConnection();
+		$verif = $connection->prepare('SELECT * FROM annexe');
+		$verif->execute(array());
+		if ($verif->rowcount() > 0) {
+			return $verif;
+		}
+		return false;
 	}
 }
