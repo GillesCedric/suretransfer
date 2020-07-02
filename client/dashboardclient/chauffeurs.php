@@ -1,4 +1,10 @@
-<?php include("../../config.php") ?>
+<?php
+require_once("../../config.php");
+require_once(CONTROLLERS_PATH . '/client/clientcommandes.php');
+$commandes = new ClientCommandes('21452565415');
+$chauffeurs = $commandes->getChaufffeur();
+$client = $commandes->getClient();
+?>
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -298,7 +304,15 @@
 						<!-- Nav Item - User Information -->
 						<li class="nav-item dropdown no-arrow">
 							<a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-								<span class="mr-2 d-none d-lg-inline text-gray-600 small">Valerie Luna</span>
+								<span class="mr-2 d-none d-lg-inline text-gray-600 small">
+									<?php if ($client !== false) {
+										$client = $client->fetch();
+										echo ($client['nom'] . ' ' . $client['prenom']);
+									} else {
+										echo ('Username');
+									}
+									?>
+								</span>
 							</a>
 							<!-- Dropdown - User Information -->
 							<div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
@@ -347,18 +361,29 @@
 										</tr>
 									</thead>
 									<tbody>
-										<tr>
-											<td>Tiger Nixon</td>
-											<td>System Architect</td>
-											<td>Edinburgh</td>
-											<td>61</td>
-										</tr>
-										<tr>
-											<td>Garrett Winters</td>
-											<td>Accountant</td>
-											<td>Tokyo</td>
-											<td>63</td>
-										</tr>
+										<?php
+										if ($chauffeurs !== false) :
+											while ($val = $chauffeurs->fetch()) : ?>
+												<tr class="text-uppercase">
+													<td>
+														<?= $val['num_cni'] ?>
+													</td>
+													<td>
+														<?= $val['nom'] ?>
+													</td>
+													<td>
+														<?= $val['prenom'] ?>
+													</td>
+													<td>
+														<?= $val['tel'] ?>
+													</td>
+												</tr>
+											<?php endwhile; ?>
+										<?php else : ?>
+											<tr align="center">
+												<td colspan="7">Aucun véhicule pour l'instant</td>
+											</tr>
+										<?php endif; ?>
 									</tbody>
 								</table>
 							</div>

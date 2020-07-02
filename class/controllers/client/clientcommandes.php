@@ -4,6 +4,7 @@ require_once(CLASS_PATH . '/dbconnection.php');
 require_once(MODELS_PATH . '/commande.php');
 require_once(MODELS_PATH . '/vehicule.php');
 require_once(MODELS_PATH . '/chauffeur.php');
+require_once(MODELS_PATH . '/client.php');
 
 class ClientCommandes
 {
@@ -18,9 +19,24 @@ class ClientCommandes
 		# code...
 	}
 
+	public function getClient()
+	{
+		return Client::get($this->numCni);
+	}
+
 	public function get()
 	{
 		return Commande::get($this->numCni);
+	}
+
+	public function getChaufffeur()
+	{
+		return Chauffeur::getClient($this->numCni);
+	}
+
+	public function getVehicule()
+	{
+		return Vehicule::getClient($this->numCni);
 	}
 
 	public function getDepensesMois()

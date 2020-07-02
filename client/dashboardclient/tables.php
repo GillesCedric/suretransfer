@@ -2,6 +2,7 @@
 require_once("../../config.php");
 require_once(CONTROLLERS_PATH . '/client/clientcommandes.php');
 $commandes = new ClientCommandes('21452565415');
+$client = $commandes->getClient();
 $commandes = $commandes->get();
 ?>
 <!DOCTYPE html>
@@ -306,7 +307,15 @@ $commandes = $commandes->get();
             <!-- Nav Item - User Information -->
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Valerie Luna</span>
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small">
+                  <?php if ($client !== false) {
+                    $client = $client->fetch();
+                    echo ($client['nom'] . ' ' . $client['prenom']);
+                  } else {
+                    echo ('Username');
+                  }
+                  ?>
+                </span>
               </a>
               <!-- Dropdown - User Information -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
@@ -362,7 +371,7 @@ $commandes = $commandes->get();
                     <?php
                     if ($commandes !== false) :
                       while ($val = $commandes->fetch()) : ?>
-                        <tr>
+                        <tr class="text-uppercase">
                           <td>
                             <?= $val['num_commande'] ?>
                           </td>

@@ -1,6 +1,6 @@
 <?php
 require_once('utilisateur.php');
-require_once('../config.php');
+require_once(dirname(dirname(__DIR__)) . '/config.php');
 require_once(CLASS_PATH . '/dbconnection.php');
 class Client extends Utilisateur
 {
@@ -74,5 +74,13 @@ class Client extends Utilisateur
 
 	public static function get(string $numCni)
 	{
+		$connection = new DBConnection(HOST, PORT, DBNAME, DBUSERNAME, DBPASSWORD);
+		$connection = $connection->setConnection();
+		$verif = $connection->prepare('SELECT * FROM client WHERE num_cni=?');
+		$verif->execute(array($numCni));
+		if ($verif->rowcount() == 1) {
+			return $verif;
+		}
+		return false;
 	}
 }
