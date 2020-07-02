@@ -22,7 +22,7 @@ $commandes = $commandes->get();
   <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
   <!-- Custom styles for this template -->
-  <link href="css/sb-admin-2.min.css" rel="stylesheet">
+  <link href="css/sb-admin-2.css" rel="stylesheet">
 
   <!-- Custom styles for this page -->
   <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
@@ -338,7 +338,7 @@ $commandes = $commandes->get();
           <!-- Page Heading -->
           <h1 class="h3 mb-2 text-gray-800">Commandes</h1>
           <p class="mb-4">La liste de toutes les commandes déjà effectuées ainsi que leur statut. <a target="_blank" href="https://datatables.net">official DataTables documentation</a>.</p>
-          <div class="text-right text-center-xs" style="margin-bottom:20px;"><a href="nouvellecommande.php" class="d-sm-inline-block btn btn-sm btn-primary shadow-sm "><button class="btn btn-primary">Nouvelle commande<i class="fas fa-plus" style="margin-left:2px;"></i></button></a></div>
+          <div class="text-right text-xs" style="margin-bottom:20px;"><a href="nouvellecommande.php" class="d-sm-inline-block btn btn-sm btn-primary shadow-sm "><button class="btn btn-primary">Nouvelle commande<i class="fas fa-plus" style="margin-left:2px;"></i></button></a></div>
 
           <!-- DataTales Example -->
           <div class="card shadow mb-4">
