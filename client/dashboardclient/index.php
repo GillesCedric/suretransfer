@@ -1,7 +1,9 @@
 <?php
+session_start();
 require_once("../../config.php");
 require_once(CONTROLLERS_PATH . '/client/clientcommandes.php');
-$commandes = new ClientCommandes('21452565415');
+ClientCommandes::verifConnection();
+$commandes = new ClientCommandes($_SESSION['client']);
 $nbCommandeMois = $commandes->getDepensesMois();
 $nbCommandeMois = $commandes->getDepensesMois();
 $nbCommandeAnne = $commandes->getDepensesAnne();
@@ -212,6 +214,22 @@ $client = $commandes->getClient();
                 <h6 class="dropdown-header">
                   Notifications
                 </h6>
+                <?php
+                if (true) : ?>
+
+                <?php else : ?>
+                  <a class="dropdown-item d-flex align-items-center" href="#">
+                    <div class="mr-3">
+                      <div class="icon-circle bg-primary">
+                        <i class="fas fa-file-alt text-white"></i>
+                      </div>
+                    </div>
+                    <div>
+                      <div class="small text-gray-500">December 12, 2019</div>
+                      <span class="font-weight-bold">Aucune notification</span>
+                    </div>
+                  </a>
+                <?php endif; ?>
                 <a class="dropdown-item d-flex align-items-center" href="#">
                   <div class="mr-3">
                     <div class="icon-circle bg-primary">

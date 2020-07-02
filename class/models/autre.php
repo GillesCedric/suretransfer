@@ -3,9 +3,9 @@ abstract class Autre
 {
 	protected int $montant;
 
-	public function __construct(int $montant, int $created_at, int $updated_at)
+	public function __construct(int $montant)
 	{
-		$this->tel = $montant;
+		$this->montant = $montant;
 	}
 
 	public abstract static function delete(string $val);

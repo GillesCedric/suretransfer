@@ -1,10 +1,13 @@
 <?php
 require_once(dirname(dirname(dirname(__DIR__))) . '\config.php');
 require_once(CLASS_PATH . '/dbconnection.php');
+require_once(CLASS_PATH . '/app.php');
 require_once(MODELS_PATH . '/commande.php');
 require_once(MODELS_PATH . '/vehicule.php');
 require_once(MODELS_PATH . '/chauffeur.php');
 require_once(MODELS_PATH . '/client.php');
+require_once(MODELS_PATH . '/station.php');
+require_once(MODELS_PATH . '/annexe.php');
 
 class ClientCommandes
 {
@@ -16,12 +19,41 @@ class ClientCommandes
 
 	public function getAll()
 	{
-		# code...
+	}
+
+	public function insert(string $mode, int $montant, string $vehicule, string $chauffeur, string $client, string $station, string $service)
+	{
+		if (!empty($mode) && !empty($montant) && !empty($vehicule) && !empty($chauffeur) && !empty($client) && !empty($station) && !empty($service)) {
+			$commande = new Commande($mode, 'en attente', $montant, $vehicule, $chauffeur, $client, $station, $service);
+			$commande->insert();
+			App::msg("Commande enregistrée");
+			App::redirect('index.php');
+		} else {
+			App::error('Veuillez remplir tous les champs');
+		}
 	}
 
 	public function getClient()
 	{
 		return Client::get($this->numCni);
+	}
+
+	public static function verifConnection()
+	{
+		if (isset($_SESSION['client']) && !empty($_SESSION['client'])) {
+			return true;
+		}
+		App::redirect('../connexion.php');
+	}
+
+	public function getStation()
+	{
+		return Station::getAll($this->numCni);
+	}
+
+	public function getStationAnnexe()
+	{
+		return Annexe::getAll();
 	}
 
 	public function get()

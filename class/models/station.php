@@ -24,7 +24,7 @@ class Station extends Utilisateur
 
 	public static function connect(string $numCni): void
 	{
-		App::addSession(array('client' => array('entreprise' => $numCni)));
+		App::addSession(array('station' => $numCni));
 		App::redirect('');
 	}
 
@@ -46,5 +46,13 @@ class Station extends Utilisateur
 
 	public static function getAll()
 	{
+		$connection = new DBConnection(HOST, PORT, DBNAME, DBUSERNAME, DBPASSWORD);
+		$connection = $connection->setConnection();
+		$verif = $connection->prepare('SELECT * FROM station');
+		$verif->execute(array());
+		if ($verif->rowcount() > 0) {
+			return $verif;
+		}
+		return false;
 	}
 }

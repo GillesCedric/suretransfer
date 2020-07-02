@@ -19,7 +19,8 @@ class Client extends Utilisateur
 		$connection = new DBConnection(HOST, PORT, DBNAME, DBUSERNAME, DBPASSWORD);
 		$connection = $connection->setConnection();
 		$insert = $connection->prepare('INSERT INTO client(num_cni,nom,prenom,tel,mail,login,password,statut,created_at,updated_at) VALUES (?,?,?,?,?,?,?,?,?,?)');
-		$insert = $insert->execute(array($this->numCni, $this->nom, $this->prenom, $this->tel, $this->mail, $this->login, $this->password, $this->statut, time(), time()));
+		$date = date('Y-m-d H:i:s');
+		$insert = $insert->execute(array($this->numCni, $this->nom, $this->prenom, $this->tel, $this->mail, $this->login, $this->password, $this->statut, $date, $date));
 	}
 
 	public static function verifLogin(string $login): bool
@@ -60,8 +61,9 @@ class Client extends Utilisateur
 
 	public static function connect(string $numCni): void
 	{
-		App::addSession(array('client' => array('entreprise' => $numCni)));
-		App::redirect('');
+		App::addSession(array('client' => $numCni));
+		print_r($_SESSION);
+		App::redirect('dashboardclient/index.php');
 	}
 
 	public static function update(string ...$values)

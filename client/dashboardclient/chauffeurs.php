@@ -1,7 +1,8 @@
 <?php
+session_start();
 require_once("../../config.php");
 require_once(CONTROLLERS_PATH . '/client/clientcommandes.php');
-$commandes = new ClientCommandes('21452565415');
+$commandes = new ClientCommandes($_SESSION['client']);
 $chauffeurs = $commandes->getChaufffeur();
 $client = $commandes->getClient();
 ?>
@@ -422,15 +423,15 @@ $client = $commandes->getClient();
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
-				<h5 class="modal-title" id="exampleModalLabel">Voulez-vous sortir?</h5>
-          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">×</span>
-          </button>
-        </div>
-        <div class="modal-body">Selectionnez "Deconnexion" pour vous deconnecter.</div>
-        <div class="modal-footer">
-          <button class="btn btn-secondary" type="button" data-dismiss="modal">Annuler</button>
-          <a class="btn btn-primary" href="../../pages/deconnexion.php">Deconnexion</a>
+					<h5 class="modal-title" id="exampleModalLabel">Voulez-vous sortir?</h5>
+					<button class="close" type="button" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">×</span>
+					</button>
+				</div>
+				<div class="modal-body">Selectionnez "Deconnexion" pour vous deconnecter.</div>
+				<div class="modal-footer">
+					<button class="btn btn-secondary" type="button" data-dismiss="modal">Annuler</button>
+					<a class="btn btn-primary" href="../../pages/deconnexion.php">Deconnexion</a>
 				</div>
 			</div>
 		</div>

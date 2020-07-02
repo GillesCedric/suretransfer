@@ -1,7 +1,8 @@
 <?php
+session_start();
 require_once("../../config.php");
 require_once(CONTROLLERS_PATH . '/client/clientcommandes.php');
-$commandes = new ClientCommandes('21452565415');
+$commandes = new ClientCommandes($_SESSION['client']);
 $vehicules = $commandes->getVehicule();
 $client = $commandes->getClient();
 ?>
@@ -422,7 +423,7 @@ $client = $commandes->getClient();
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Voulez-vous sortir?</h5>
+          <h5 class="modal-title" id="exampleModalLabel">Voulez-vous sortir?</h5>
           <button class="close" type="button" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">×</span>
           </button>
