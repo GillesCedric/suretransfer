@@ -9493,6 +9493,24 @@ button.bg-dark:focus {
   .text-sm-center {
     text-align: center !important;
   }
+  .text-xs {
+    text-align: center !important;
+  }
+}
+
+@media (max-width: 576px) {
+  .text-sm-left {
+    text-align: left !important;
+  }
+  .text-sm-right {
+    text-align: right !important;
+  }
+  .text-sm-center {
+    text-align: center !important;
+  }
+  .text-xs {
+    text-align: center !important;
+  }
 }
 
 @media (min-width: 768px) {
@@ -9504,6 +9522,9 @@ button.bg-dark:focus {
   }
   .text-md-center {
     text-align: center !important;
+  }
+  .text-xs {
+    text-align: right !important;
   }
 }
 
@@ -9517,6 +9538,9 @@ button.bg-dark:focus {
   .text-lg-center {
     text-align: center !important;
   }
+  .text-xs {
+    text-align: right !important;
+  }
 }
 
 @media (min-width: 1200px) {
@@ -9528,6 +9552,9 @@ button.bg-dark:focus {
   }
   .text-xl-center {
     text-align: center !important;
+  }
+  .text-xs {
+    text-align: right !important;
   }
 }
 
