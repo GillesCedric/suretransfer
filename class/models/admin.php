@@ -2,32 +2,30 @@
 require_once('utilisateur.php');
 require_once(dirname(dirname(__DIR__)) . '/config.php');
 require_once(CLASS_PATH . '/dbconnection.php');
-class Client extends Utilisateur
+class Admin extends Utilisateur
 {
 	protected string $prenom;
-	private string $statut;
 
-	public function __construct(string $prenom, string $mail, string $login, string $password, string $numCni, string $nom, string $tel, string $statut)
+	public function __construct(string $prenom, string $mail, string $login, string $password, string $numCni, string $nom, string $tel)
 	{
 		parent::__construct($mail, $login, $password, $numCni, $nom, $tel);
-		$this->prenom = $prenom;
-		$this->statut = $statut;
+		$this->prenom = $prenom;;
 	}
 
 	public function insert()
 	{
 		$connection = new DBConnection(HOST, PORT, DBNAME, DBUSERNAME, DBPASSWORD);
 		$connection = $connection->setConnection();
-		$insert = $connection->prepare('INSERT INTO client(num_cni,nom,prenom,tel,mail,login,password,statut,created_at,updated_at) VALUES (?,?,?,?,?,?,?,?,?,?)');
+		$insert = $connection->prepare('INSERT INTO admin(num_cni,nom,prenom,tel,mail,login,password,created_at,updated_at) VALUES (?,?,?,?,?,?,?,?,?)');
 		$date = date('Y-m-d H:i:s');
-		$insert = $insert->execute(array($this->numCni, $this->nom, $this->prenom, $this->tel, $this->mail, $this->login, $this->password, $this->statut, $date, $date));
+		$insert = $insert->execute(array($this->numCni, $this->nom, $this->prenom, $this->tel, $this->mail, $this->login, $this->password, $date, $date));
 	}
 
 	public static function verifLogin(string $login): bool
 	{
 		$connection = new DBConnection(HOST, PORT, DBNAME, DBUSERNAME, DBPASSWORD);
 		$connection = $connection->setConnection();
-		$verif = $connection->prepare('SELECT * FROM client WHERE login=?');
+		$verif = $connection->prepare('SELECT * FROM admin WHERE login=?');
 		$verif->execute(array($login));
 		if ($verif->rowcount() == 0) {
 			return true;
@@ -39,7 +37,7 @@ class Client extends Utilisateur
 	{
 		$connection = new DBConnection(HOST, PORT, DBNAME, DBUSERNAME, DBPASSWORD);
 		$connection = $connection->setConnection();
-		$verif = $connection->prepare('SELECT * FROM client WHERE login=?');
+		$verif = $connection->prepare('SELECT * FROM admin WHERE login=?');
 		$verif->execute(array($login));
 		if ($verif->rowcount() == 0) {
 			return true;
@@ -51,8 +49,8 @@ class Client extends Utilisateur
 	{
 		$connection = new DBConnection(HOST, PORT, DBNAME, DBUSERNAME, DBPASSWORD);
 		$connection = $connection->setConnection();
-		$verif = $connection->prepare('SELECT * FROM client WHERE login=? AND password=?');
-		$verif->execute(array($value, $password));
+		$verif = $connection->prepare('SELECT * FROM admin WHERE login=? OR mail=? AND password=?');
+		$verif->execute(array($value, $value, $password));
 		if ($verif->rowcount() == 1) {
 			return $verif;
 		}
@@ -61,9 +59,8 @@ class Client extends Utilisateur
 
 	public static function connect(string $numCni): void
 	{
-		App::addSession(array('client' => $numCni));
-		print_r($_SESSION);
-		App::redirect('dashboardclient/index.php');
+		App::addSession(array('admin' => $numCni));
+		App::redirect('dashboardadmin/index.php');
 	}
 
 	public static function update(string ...$values)
@@ -78,7 +75,7 @@ class Client extends Utilisateur
 	{
 		$connection = new DBConnection(HOST, PORT, DBNAME, DBUSERNAME, DBPASSWORD);
 		$connection = $connection->setConnection();
-		$verif = $connection->prepare('SELECT * FROM client WHERE num_cni=?');
+		$verif = $connection->prepare('SELECT * FROM admin WHERE num_cni=?');
 		$verif->execute(array($numCni));
 		if ($verif->rowcount() == 1) {
 			return $verif;

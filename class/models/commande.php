@@ -2,6 +2,7 @@
 require_once('autre.php');
 require_once(dirname(dirname(__DIR__)) . '/config.php');
 require_once(CLASS_PATH . '/dbconnection.php');
+require_once(CLASS_PATH . '/mail.php');
 class Commande extends Autre
 {
 	protected string $statut;
@@ -31,6 +32,14 @@ class Commande extends Autre
 		# code...
 	}
 
+	public static function updateStatut(string $val, string $statut)
+	{
+		$connection = new DBConnection(HOST, PORT, DBNAME, DBUSERNAME, DBPASSWORD);
+		$connection = $connection->setConnection();
+		$update = $connection->prepare('UPDATE commande SET statut=? WHERE num_commande=?');
+		$update->execute(array($statut, $val));
+	}
+
 	public function insert()
 	{
 		$connection = new DBConnection(HOST, PORT, DBNAME, DBUSERNAME, DBPASSWORD);
@@ -38,6 +47,8 @@ class Commande extends Autre
 		$insert = $connection->prepare('INSERT INTO commande(num_commande,montant,statut,mode,service,created_at,updated_at,immat,num_cni_client,num_cni_chauffeur,id_annexe) VALUES (?,?,?,?,?,?,?,?,?,?,?)');
 		$date = date('Y-m-d H:i:s');
 		$insert = $insert->execute(array($this->numCommande, $this->montant, $this->statut, $this->mode, $this->service, $date, $date, $this->immat, $this->numCniClient, $this->numCniChauffeur, $this->idAnnexe));
+		$mail = new Mail($date);
+		$mail->sendMailAnnulation();
 	}
 
 	public static function get(string $val)
@@ -45,8 +56,21 @@ class Commande extends Autre
 
 		$connection = new DBConnection(HOST, PORT, DBNAME, DBUSERNAME, DBPASSWORD);
 		$connection = $connection->setConnection();
-		$get = $connection->prepare('SELECT commande.service,commande.num_commande,commande.montant,commande.statut,commande.created_at,vehicule.immat,chauffeur.nom AS nomchauffeur,chauffeur.prenom,annexe.quartier,station.nom AS nomstation FROM commande,annexe,chauffeur,vehicule,station WHERE commande.num_cni_client=? AND commande.num_cni_chauffeur=chauffeur.num_cni AND commande.id_annexe=annexe.id AND annexe.id_station=station.id');
+		$get = $connection->prepare('SELECT client.nom AS nomclient,client.prenom AS prenomclient,commande.service,commande.num_commande,commande.montant,commande.statut,commande.created_at,vehicule.immat,chauffeur.nom AS nomchauffeur,chauffeur.prenom,annexe.quartier,station.nom AS nomstation FROM commande,annexe,chauffeur,vehicule,station,client WHERE commande.num_cni_client=? AND commande.num_cni_chauffeur=chauffeur.num_cni AND commande.id_annexe=annexe.id AND annexe.id_station=station.id AND commande.num_cni_client=client.num_cni');
 		$get->execute(array($val));
+		if ($get->rowCount() > 0) {
+			return $get;
+		}
+		return false;
+	}
+
+	public static function getAll(string $statut)
+	{
+
+		$connection = new DBConnection(HOST, PORT, DBNAME, DBUSERNAME, DBPASSWORD);
+		$connection = $connection->setConnection();
+		$get = $connection->prepare('SELECT chauffeur.num_cni AS num_cni_chauffeur,commande.service,vehicule.marque,vehicule.modele,vehicule.couleur,commande.num_commande,commande.montant,commande.statut,commande.created_at,vehicule.immat,chauffeur.nom AS nomchauffeur,chauffeur.prenom,annexe.quartier,station.nom AS nomstation FROM commande,annexe,chauffeur,vehicule,station WHERE commande.statut = ?');
+		$get->execute(array($statut));
 		if ($get->rowCount() > 0) {
 			return $get;
 		}
