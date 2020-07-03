@@ -374,7 +374,18 @@ $commandes = $commandes->get();
                     <?php
                     if ($commandes !== false) :
                       while ($val = $commandes->fetch()) : ?>
-                        <tr class="text-uppercase">
+                        <tr class="text-uppercase 
+                        <?php
+                        if ($val['statut'] == 'en attente') {
+                          echo "table-warning";
+                        } elseif ($val['statut'] == 'en cours') {
+                          echo "table-primary";
+                        } elseif ($val['statut'] == 'effectué') {
+                          echo "table-success";
+                        } else {
+                          echo "table-danger";
+                        }
+                        ?>">
                           <td>
                             <?= $val['num_commande'] ?>
                           </td>

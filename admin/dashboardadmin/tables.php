@@ -313,11 +313,7 @@ $commandes = $commandes->getAll('en attente');
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">
-<<<<<<< HEAD
                   <?php if ($client !== false) {
-=======
-                  <?php  if ($client !== false) {
->>>>>>> 9cb743b2bfd38550833cf601d3ad49c0f2806bb8
                     $client = $client->fetch();
                     echo ($client['nom'] . ' ' . $client['prenom']);
                   } else {
@@ -354,7 +350,9 @@ $commandes = $commandes->getAll('en attente');
 
           <!-- Page Heading -->
           <h1 class="h3 mb-2 text-gray-800">Commandes</h1>
-          <p class="mb-4">La liste de toutes les commandes en attente.<!-- <a target="_blank" href="https://datatables.net">official DataTables documentation</a>.--></p>
+          <p class="mb-4">La liste de toutes les commandes en attente.
+            <!-- <a target="_blank" href="https://datatables.net">official DataTables documentation</a>.-->
+          </p>
           <!-- DataTales Example -->
           <div class="card shadow mb-4">
             <div class="card-header py-3">

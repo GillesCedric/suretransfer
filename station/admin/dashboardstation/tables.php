@@ -1,6 +1,11 @@
 <?php
+session_start();
 require_once("../../../config.php");
-
+require_once(CONTROLLERS_PATH . '/station/admin/statioadmincommandes.php');
+$commandes = new StationAdminCommandes($_SESSION['station']);
+$commande = new StationAdminCommandes($_SESSION['station']);
+$commandes = $commandes->get();
+$commande = $commande->get();
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -98,7 +103,7 @@ require_once("../../../config.php");
         Options
       </div>
       <!-- Nav Item - Charts -->
-      
+
 
       <!-- Nav Item - Tables -->
       <li class="nav-item active">
@@ -278,12 +283,12 @@ require_once("../../../config.php");
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">
-                  <?php /* if ($client !== false) {
-                    $client = $client->fetch();
-                    echo ($client['nom'] . ' ' . $client['prenom']);
+                  <?php if ($commande !== false) {
+                    $infos = $commande->fetch();
+                    echo ($infos['nom']);
                   } else {
                     echo ('Username');
-                  }*/
+                  }
                   ?>
                 </span>
               </a>
@@ -338,20 +343,35 @@ require_once("../../../config.php");
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                      <td>Tiger Nixon</td>
-                      <td>System Architect</td>
-                      <td>Edinburgh</td>
-                      <td>61</td>
-                      <td>2011/04/25</td>
-                      <td align="center" style="align-items:center;"> 
-                          <button type="button" style="background:none; border:none;">
-                            <i class="fas fa-trash fa-sm text-danger" style="font-size:20px;"></i>
-                          </button>
-                         
-                        </td>
-                    </tr>
-                    
+                    <?php
+                    if ($commandes !== false) :
+                      while ($val = $commandes->fetch()) : ?>
+                        <tr class="text-uppercase">
+                          <td>
+                            <?= $val['nom'] ?>
+                          </td>
+                          <td>
+                            <?= $val['ville'] ?>
+                          </td>
+                          <td>
+                            <?= $val['quartier'] ?>
+                          </td>
+                          <td>
+                            <?= $val['totalcommande'] ?>
+                          </td>
+                          <td>
+                            <?= $val['totalmontant'] ?>
+                          </td>
+                          <td>
+                            <?= $val['nom'] ?>
+                          </td>
+                        </tr>
+                      <?php endwhile; ?>
+                    <?php else : ?>
+                      <tr align="center">
+                        <td colspan="7">Aucune commande pour l'instant</td>
+                      </tr>
+                    <?php endif; ?>
                   </tbody>
                 </table>
               </div>

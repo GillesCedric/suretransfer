@@ -5,11 +5,11 @@ require_once(CLASS_PATH . '/app.php');
 require_once(MODELS_PATH . '/commande.php');
 require_once(MODELS_PATH . '/vehicule.php');
 require_once(MODELS_PATH . '/chauffeur.php');
-require_once(MODELS_PATH . '/admin.php');
-require_once(MODELS_PATH . '/station.php');
 require_once(MODELS_PATH . '/pompiste.php');
+require_once(MODELS_PATH . '/station.php');
+require_once(MODELS_PATH . '/annexe.php');
 
-class PompisteCommandes
+class AnnexeCommandes
 {
 	private string $numCni;
 	public function __construct(string $numCni)
@@ -22,15 +22,20 @@ class PompisteCommandes
 		return Commande::getAll($statut);
 	}
 
-	public static function updatestatut(string $numCommande, string $statut, string $numCni)
+	public static function updatestatutCommande(string $numCommande, string $statut)
 	{
-		Commande::updateStatut2($numCommande, $statut, $numCni);
+		Commande::updateStatut($numCommande, $statut);
 	}
 
-	public function insert(string $mode, int $montant, string $vehicule, string $chauffeur, string $client, string $station, string $service)
+	public static function updatestatut(string $numCommande, int $statut)
 	{
-		if (!empty($mode) && !empty($montant) && !empty($vehicule) && !empty($chauffeur) && !empty($client) && !empty($station) && !empty($service)) {
-			$commande = new Commande($mode, 'en attente', $montant, $vehicule, $chauffeur, $client, $station, $service);
+		Pompiste::updateStatut($numCommande, $statut);
+	}
+
+	public function insert(string $nom, string $prenom, string $tel, string $mail, string $cni)
+	{
+		if (!empty($nom) && !empty($prenom) && !empty($tel) && !empty($mail) && !empty($cni)) {
+			$commande = new Pompiste($mail, $cni, $nom, $prenom, $tel, $this->numCni);
 			$commande->insert();
 			App::msg("Commande enregistrée");
 			App::redirect('index.php');
@@ -39,9 +44,14 @@ class PompisteCommandes
 		}
 	}
 
+	public function getAnnexe()
+	{
+		return Annexe::get($this->numCni);
+	}
+
 	public function getPompiste()
 	{
-		return Pompiste::get($this->numCni);
+		return Pompiste::getAllAnnexe($this->numCni);
 	}
 
 	public static function verifConnection()

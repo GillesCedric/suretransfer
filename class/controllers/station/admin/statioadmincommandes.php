@@ -7,9 +7,9 @@ require_once(MODELS_PATH . '/vehicule.php');
 require_once(MODELS_PATH . '/chauffeur.php');
 require_once(MODELS_PATH . '/admin.php');
 require_once(MODELS_PATH . '/station.php');
-require_once(MODELS_PATH . '/pompiste.php');
+require_once(MODELS_PATH . '/annexe.php');
 
-class PompisteCommandes
+class StationAdminCommandes
 {
 	private string $numCni;
 	public function __construct(string $numCni)
@@ -22,9 +22,9 @@ class PompisteCommandes
 		return Commande::getAll($statut);
 	}
 
-	public static function updatestatut(string $numCommande, string $statut, string $numCni)
+	public static function updatestatut(string $numCommande, string $statut)
 	{
-		Commande::updateStatut2($numCommande, $statut, $numCni);
+		Commande::updateStatut($numCommande, $statut);
 	}
 
 	public function insert(string $mode, int $montant, string $vehicule, string $chauffeur, string $client, string $station, string $service)
@@ -39,9 +39,9 @@ class PompisteCommandes
 		}
 	}
 
-	public function getPompiste()
+	public function getAdmin()
 	{
-		return Pompiste::get($this->numCni);
+		return Admin::get($this->numCni);
 	}
 
 	public static function verifConnection()
@@ -64,7 +64,7 @@ class PompisteCommandes
 
 	public function get()
 	{
-		return Commande::get($this->numCni);
+		return Annexe::getStation(intval($this->numCni));
 	}
 
 	public function getChaufffeur()

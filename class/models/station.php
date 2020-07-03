@@ -25,7 +25,7 @@ class Station extends Utilisateur
 	public static function connect(string $numCni): void
 	{
 		App::addSession(array('station' => $numCni));
-		App::redirect('');
+		App::redirect('dashboardstation/index.php');
 	}
 
 	public static function update(string ...$values)

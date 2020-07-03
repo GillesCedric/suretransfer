@@ -1,20 +1,12 @@
-<?php require_once("../../../config.php");
-/*session_start();
-
-require_once(CONTROLLERS_PATH . '/client/clientcommandes.php');
-ClientCommandes::verifConnection();
-$commandes = new ClientCommandes($_SESSION['client']);
-$vehicules = $commandes->getVehicule();
-$chauffeurs = $commandes->getChaufffeur();
-$stations = $commandes->getStation();
-$station = '';
-if ($stations !== false) {
-    $station = $stations->fetch();
-}
-$annexe = $commandes->getStationAnnexe();
+<?php
+session_start();
+require_once("../../../config.php");
+require_once(CONTROLLERS_PATH . '/station/annexe/annexecommandes.php');
+AnnexeCommandes::verifConnection();
+$commandes = new AnnexeCommandes($_SESSION['annexe']);
 if (isset($_POST['submit'])) {
-    $commandes->insert($_POST['mode'], intval($_POST['montant']), $_POST['vehicule'], $_POST['chauffeur'], '21452565415', $_POST['annexe'], $_POST['service']);
-}*/
+    $commandes->insert($_POST['nom'], $_POST['prenom'], $_POST['tel'], $_POST['mail'], $_POST['cni']);
+}
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -49,37 +41,37 @@ if (isset($_POST['submit'])) {
             <p class="" style="margin:40px;font-size:18px;">Ajout d'un <span class="text-primary">pompiste</span>.</p>
             <div class="text-right text-xs" style="margin-bottom:20px;"><a href="tables.php" class="d-sm-inline-block btn btn-sm btn-primary shadow-sm "><button class="btn btn-primary" type="button">Retournez à l'acceuil <i class="fas fa-arrow-left" style="margin-left:2px;"></i></button></a></div>
             <div class="form-group">
-                <label for="ville" class="">Noms</label>
-                <input type="text" id="ville" class="form-control" style="margin-right:20px;transition:.3s;" name="ville">
+                <label for="nom" class="">Noms</label>
+                <input type="text" id="nom" class="form-control" style="margin-right:20px;transition:.3s;" name="nom">
             </div><br>
             <div class="form-group">
-                <label for="quartier" class="">Prénoms</label>
-                <input type="text" id="quartier" class="form-control" style="margin-right:20px;transition:.3s;" name="quartier">
+                <label for="prenom" class="">Prénoms</label>
+                <input type="text" id="prenom" class="form-control" style="margin-right:20px;transition:.3s;" name="prenom">
             </div><br>
             <div class="form-group">
-                <label for="ville" class="">N°Tel</label>
-                <input type="number" id="tel" class="form-control" style="margin-right:20px;transition:.3s;" name="tel">
+                <label for="tel" class="">N°Tel</label>
+                <input type="text" id="tel" class="form-control" style="margin-right:20px;transition:.3s;" name="tel">
             </div><br>
             <div class="form-group">
                 <label for="mail" class="">Email</label>
                 <input type="text" id="mail" class="form-control" style="margin-right:20px;transition:.3s;" name="mail">
             </div><br>
             <div class="form-group">
-                <label for="mail" class="">N°CNI</label>
-                <input type="text" id="mail" class="form-control" style="margin-right:20px;transition:.3s;" name="mail">
+                <label for="cni" class="">N°CNI</label>
+                <input type="text" id="cni" class="form-control" style="margin-right:20px;transition:.3s;" name="cni">
             </div><br>
             <div class="form-group">
-                <button type="button" class="btn btn-primary" style="width:100%">Valider</button>
+                <button type="submit" class="btn btn-primary" style="width:100%" name="submit">Valider</button>
             </div>
-    <!-- Bootstrap core JavaScript-->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+            <!-- Bootstrap core JavaScript-->
+            <script src="vendor/jquery/jquery.min.js"></script>
+            <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-    <!-- Core plugin JavaScript-->
-    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+            <!-- Core plugin JavaScript-->
+            <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
-    <!-- Custom scripts for all pages-->
-    <script src="js/sb-admin-2.min.js"></script>
+            <!-- Custom scripts for all pages-->
+            <script src="js/sb-admin-2.min.js"></script>
 </body>
 
 </html>

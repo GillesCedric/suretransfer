@@ -32,6 +32,14 @@ class Commande extends Autre
 		# code...
 	}
 
+	public static function updateStatut2(string $val, string $statut, string $numCni)
+	{
+		$connection = new DBConnection(HOST, PORT, DBNAME, DBUSERNAME, DBPASSWORD);
+		$connection = $connection->setConnection();
+		$update = $connection->prepare('UPDATE commande SET statut=?,num_cni_pompiste=? WHERE num_commande=?');
+		$update->execute(array($statut, $numCni, $val));
+	}
+
 	public static function updateStatut(string $val, string $statut)
 	{
 		$connection = new DBConnection(HOST, PORT, DBNAME, DBUSERNAME, DBPASSWORD);
@@ -57,6 +65,19 @@ class Commande extends Autre
 		$connection = new DBConnection(HOST, PORT, DBNAME, DBUSERNAME, DBPASSWORD);
 		$connection = $connection->setConnection();
 		$get = $connection->prepare('SELECT client.nom AS nomclient,client.prenom AS prenomclient,commande.service,commande.num_commande,commande.montant,commande.statut,commande.created_at,vehicule.immat,chauffeur.nom AS nomchauffeur,chauffeur.prenom,annexe.quartier,station.nom AS nomstation FROM commande,annexe,chauffeur,vehicule,station,client WHERE commande.num_cni_client=? AND commande.num_cni_chauffeur=chauffeur.num_cni AND commande.id_annexe=annexe.id AND annexe.id_station=station.id AND commande.num_cni_client=client.num_cni');
+		$get->execute(array($val));
+		if ($get->rowCount() > 0) {
+			return $get;
+		}
+		return false;
+	}
+
+	public static function getCommande(string $val)
+	{
+
+		$connection = new DBConnection(HOST, PORT, DBNAME, DBUSERNAME, DBPASSWORD);
+		$connection = $connection->setConnection();
+		$get = $connection->prepare('SELECT client.nom AS nomclient,client.prenom AS prenomclient,commande.service,commande.num_commande,commande.montant,commande.statut,commande.created_at,vehicule.immat,chauffeur.nom AS nomchauffeur,chauffeur.prenom,annexe.quartier,station.nom AS nomstation FROM commande,annexe,chauffeur,vehicule,station,client WHERE commande.num_commande=? AND commande.num_cni_chauffeur=chauffeur.num_cni AND commande.id_annexe=annexe.id AND annexe.id_station=station.id AND commande.num_cni_client=client.num_cni');
 		$get->execute(array($val));
 		if ($get->rowCount() > 0) {
 			return $get;

@@ -13,7 +13,7 @@ class AnnexeConnection extends Connection
 			$client = Annexe::verifConnect($this->login, $this->password);
 			if ($client !== false) {
 				$client = $client->fetch();
-				Annexe::connect($client['num_cni']);
+				Annexe::connect($client['id']);
 			} else {
 				App::error('Login et/ou mot de passe incorrect');
 			}

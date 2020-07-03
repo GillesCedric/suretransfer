@@ -1,5 +1,7 @@
 <?php
 require_once('station.php');
+require_once(dirname(dirname(__DIR__)) . '/config.php');
+require_once(CLASS_PATH . '/dbconnection.php');
 class Annexe extends Station
 {
 	private string $ville;
@@ -27,7 +29,7 @@ class Annexe extends Station
 	public static function connect(string $numCni): void
 	{
 		App::addSession(array('annexe' => $numCni));
-		App::redirect('');
+		App::redirect('dashboardannexe/index.php');
 	}
 
 	public static function update(string ...$values)
@@ -40,6 +42,26 @@ class Annexe extends Station
 
 	public static function get(string $numCni)
 	{
+		$connection = new DBConnection(HOST, PORT, DBNAME, DBUSERNAME, DBPASSWORD);
+		$connection = $connection->setConnection();
+		$verif = $connection->prepare('SELECT * FROM annexe WHERE id=?');
+		$verif->execute(array($numCni));
+		if ($verif->rowcount() == 1) {
+			return $verif;
+		}
+		return false;
+	}
+
+	public static function getStation(int $numCni)
+	{
+		$connection = new DBConnection(HOST, PORT, DBNAME, DBUSERNAME, DBPASSWORD);
+		$connection = $connection->setConnection();
+		$verif = $connection->prepare('SELECT station.nom,annexe.ville,annexe.quartier,COUNT(num_commande) AS totalcommande,SUM(montant) AS totalmontant FROM station,annexe,commande WHERE station.id=?');
+		$verif->execute(array($numCni));
+		if ($verif->rowcount() > 0) {
+			return $verif;
+		}
+		return false;
 	}
 
 	public function insert()

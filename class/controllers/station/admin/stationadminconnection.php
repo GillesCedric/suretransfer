@@ -4,7 +4,7 @@ require_once(CLASS_PATH . '/dbconnection.php');
 require_once(CONTROLLERS_PATH . '/abstract/connection.php');
 require_once(MODELS_PATH . '/station.php');
 
-class StationConnection extends Connection
+class StationAdminConnection extends Connection
 {
 	public function __construct(string $login, string $password)
 	{
@@ -13,7 +13,7 @@ class StationConnection extends Connection
 			$client = Station::verifConnect($this->login, $this->password);
 			if ($client !== false) {
 				$client = $client->fetch();
-				Station::connect($client['num_cni']);
+				Station::connect($client['id']);
 			} else {
 				App::error('Login et/ou mot de passe incorrect');
 			}
