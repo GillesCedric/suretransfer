@@ -10,7 +10,7 @@ abstract class Connection
 	public function __construct(string $login, string $password)
 	{
 		$this->login = htmlspecialchars($login);
-		$this->password = htmlspecialchars(md5($login));
+		$this->password = htmlspecialchars(md5($password));
 	}
 
 	protected function connect(array $values, string $location): void

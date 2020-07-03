@@ -1,6 +1,11 @@
 <?php
+session_start();
 require_once("../../../config.php");
-
+require_once(CONTROLLERS_PATH . '/station/pompiste/pompistecommandes.php');
+PompisteCommandes::verifConnection();
+$commandes = new PompisteCommandes($_SESSION['pompiste']);
+$client = $commandes->getPompiste();
+$commandes = $commandes->getAll('en cours');
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -53,7 +58,7 @@ require_once("../../../config.php");
       <!-- Divider -->
       <hr class="sidebar-divider">
 
-      
+
       <!-- Nav Item - Utilities Collapse Menu -->
       <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
@@ -72,13 +77,13 @@ require_once("../../../config.php");
       </li>
 
       <!-- Divider -->
-      
+
 
       <!-- Heading -->
-      
+
 
       <!-- Nav Item - Tables -->
-    
+
 
       <!-- Divider -->
       <hr class="sidebar-divider d-none d-md-block">
@@ -251,12 +256,12 @@ require_once("../../../config.php");
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">
-                  <?php /* if ($client !== false) {
+                  <?php if ($client !== false) {
                     $client = $client->fetch();
                     echo ($client['nom'] . ' ' . $client['prenom']);
                   } else {
                     echo ('Username');
-                  }*/
+                  }
                   ?>
                 </span>
               </a>
@@ -301,42 +306,68 @@ require_once("../../../config.php");
                   <thead>
                     <tr>
                       <th>Montant</th>
-                      <th>Produit à consommer</th>
+                      <th>Service</th>
                       <th>Immatriculation</th>
-                      <th>Modèle</th>
                       <th>Marque</th>
+                      <th>Modèle</th>
                       <th>Couleur</th>
                       <th>Nom du chauffeur</th>
                       <th>N°CNI</th>
-                      <th>Statut</th>
                       <th>Action</th>
                     </tr>
                   </thead>
                   <tbody>
-                    <tr class="align-items-center">
-                      <td>Tiger </td>
-                      <td>System Architect</td>
-                      <td>Edinburgh</td>
-                      <td>61</td>
-                      <td>2011/04/25</td>
-                      <td>$320,800</td>
-                      <td>$320,800</td>
-                      <td>$320,800</td>
-                      <td>$320,800</td>
-                      <td align="center"> 
-                          <button type="button" style="background:none; border:none;">
-                            <i class="fas fa-sms fa-sm" style="color:yellowgreen;  font-size:20px;"></i>
-                          </button>
-                          <button type="button" style="background:none; border:none;">
-                            <i class="fas fa-trash fa-sm" style="color:red;  font-size:20px;"></i>
-                          </button>
-                          <button type="button" style="background:none; border:none;">
-                            <i class="" style="color:red;  font-size:20px;"></i>
-                          </button>
-                         
-                        </td>
-                    </tr>
-                    
+                    <?php
+                    if ($commandes !== false) :
+                      while ($val = $commandes->fetch()) : ?>
+                        <tr class="text-uppercase 
+                        <?php
+                        if ($val['statut'] == 'en attente') {
+                          echo "table-warning";
+                        } elseif ($val['statut'] == 'en cours') {
+                          echo "table-primary";
+                        } elseif ($val['statut'] == 'effectué') {
+                          echo "table-success";
+                        } else {
+                          echo "table-danger";
+                        }
+                        ?>">
+                          <td>
+                            <?= $val['montant'] ?>
+                          </td>
+                          <td>
+                            <?= $val['service'] ?>
+                          </td>
+                          <td>
+                            <?= $val['immat'] ?>
+                          </td>
+                          <td>
+                            <?= $val['marque'] ?>
+                          </td>
+                          <td>
+                            <?= $val['modele'] ?>
+                          </td>
+                          <td>
+                            <?= $val['couleur'] ?>
+                          </td>
+                          <td>
+                            <?= $val['nomchauffeur'] . ' ' . $val['prenom'] ?>
+                          </td>
+                          <td>
+                            <?= $val['num_cni_chauffeur'] ?>
+                          </td>
+                          <td>
+                            <a title="Confirmer la commande" href="confirmationcommande.php?n=<?= $val['num_commande'] ?>" onclick="return confirm('Etes vous sur de vouloir confirmer la commande?')" class="text-decoration-none ml-3">
+                              <i class="fas fa-check fa-sm text-success text-lg"></i>
+                            </a>
+                          </td>
+                        </tr>
+                      <?php endwhile; ?>
+                    <?php else : ?>
+                      <tr align="center">
+                        <td colspan="7">Aucune commande pour l'instant</td>
+                      </tr>
+                    <?php endif; ?>
                   </tbody>
                 </table>
               </div>

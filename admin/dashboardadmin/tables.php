@@ -1,9 +1,11 @@
 <?php
+session_start();
 require_once("../../config.php");
-require_once(CONTROLLERS_PATH . '/client/clientcommandes.php');
-$commandes = new ClientCommandes('21452565415');
-$client = $commandes->getClient();
-$commandes = $commandes->get();
+require_once(CONTROLLERS_PATH . '/admin/admincommandes.php');
+AdminCommandes::verifConnection();
+$commandes = new AdminCommandes($_SESSION['admin']);
+$client = $commandes->getAdmin();
+$commandes = $commandes->getAll('en attente');
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -32,7 +34,7 @@ $commandes = $commandes->get();
 
 <body id="page-top">
 
- 
+
   <!-- Page Wrapper -->
   <div id="wrapper">
 
@@ -51,7 +53,7 @@ $commandes = $commandes->get();
       <hr class="sidebar-divider my-0">
 
       <!-- Nav Item - Dashboard -->
-      <li class="nav-item active">
+      <li class="nav-item">
         <a class="nav-link" href="index.php">
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>Tableau de bord</span></a>
@@ -134,7 +136,7 @@ $commandes = $commandes->get();
       </li>
 
       <!-- Nav Item - Tables -->
-      <li class="nav-item">
+      <li class="nav-item active">
         <a class="nav-link" href="tables.php">
           <i class="fas fa-fw fa-table"></i>
           <span>Commandes</span></a>
@@ -311,12 +313,12 @@ $commandes = $commandes->get();
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">
-                  <?php/* if ($client !== false) {
+                  <?php if ($client !== false) {
                     $client = $client->fetch();
                     echo ($client['nom'] . ' ' . $client['prenom']);
                   } else {
                     echo ('Username');
-                  }*/
+                  }
                   ?>
                 </span>
               </a>
@@ -367,14 +369,25 @@ $commandes = $commandes->get();
                       <th>Station</th>
                       <th>Statut</th>
                       <th>Action</i></th>
-                      
+
                     </tr>
                   </thead>
                   <tbody>
                     <?php
                     if ($commandes !== false) :
                       while ($val = $commandes->fetch()) : ?>
-                        <tr class="text-uppercase">
+                        <tr class="text-uppercase 
+                        <?php
+                        if ($val['statut'] == 'en attente') {
+                          echo "table-warning";
+                        } elseif ($val['statut'] == 'en cours') {
+                          echo "table-primary";
+                        } elseif ($val['statut'] == 'effectué') {
+                          echo "table-success";
+                        } else {
+                          echo "table-danger";
+                        }
+                        ?>">
                           <td>
                             <?= $val['num_commande'] ?>
                           </td>
@@ -397,15 +410,12 @@ $commandes = $commandes->get();
                             <?= $val['statut'] ?>
                           </td>
                           <td>
-                          <button type="button" style="background:none; border:none;">
-                            <i class="fas fa-sms fa-sm" style="color:orange; font-size:30px;"></i>
-                          </button>
-                          <button type="button" style="background:none; border:none;">
-                            <i class="fas fa-sms fa-sm" style="color:blue;  font-size:30px;"></i>
-                          </button>
-                          <button type="button" style="background:none; border:none;">
-                            <i class="fas fa-sms fa-sm" style="color:green;  font-size:30px;"></i>
-                          </button>
+                            <a title="Confirmer la commande" href="confirmationcommande.php?n=<?= $val['num_commande'] ?>" onclick="return confirm('Etes vous sur de vouloir confirmer la commande?')" class="text-decoration-none">
+                              <i class="fas fa-check fa-sm text-success text-lg"></i>
+                            </a>
+                            <a title="Annuler la commande" href="annulationcommande.php?n=<?= $val['num_commande'] ?>" onclick="return confirm('Etes vous sur de vouloir annuler la commande?')" class="text-decoration-none">
+                              <i class="fas fa-times fa-sm text-danger text-lg ml-lg-3"></i>
+                            </a>
                           </td>
                         </tr>
                       <?php endwhile; ?>

@@ -26,8 +26,8 @@ class Pompiste extends Utilisateur
 
 	public static function connect(string $numCni): void
 	{
-		App::addSession(array('station' => array('pompiste' => $numCni)));
-		App::redirect('');
+		App::addSession(array('pompiste' => $numCni));
+		App::redirect('dashboardpompiste/index.php');
 	}
 
 	public static function update(string ...$values)
@@ -40,6 +40,14 @@ class Pompiste extends Utilisateur
 
 	public static function get(string $numCni)
 	{
+		$connection = new DBConnection(HOST, PORT, DBNAME, DBUSERNAME, DBPASSWORD);
+		$connection = $connection->setConnection();
+		$verif = $connection->prepare('SELECT * FROM pompiste WHERE num_cni=?');
+		$verif->execute(array($numCni));
+		if ($verif->rowcount() == 1) {
+			return $verif;
+		}
+		return false;
 	}
 
 	public function insert()
