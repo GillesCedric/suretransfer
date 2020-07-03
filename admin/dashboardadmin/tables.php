@@ -51,7 +51,7 @@ $commandes = $commandes->get();
       <hr class="sidebar-divider my-0">
 
       <!-- Nav Item - Dashboard -->
-      <li class="nav-item active">
+      <li class="nav-item">
         <a class="nav-link" href="index.php">
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>Tableau de bord</span></a>
@@ -134,7 +134,7 @@ $commandes = $commandes->get();
       </li>
 
       <!-- Nav Item - Tables -->
-      <li class="nav-item">
+      <li class="nav-item active">
         <a class="nav-link" href="tables.php">
           <i class="fas fa-fw fa-table"></i>
           <span>Commandes</span></a>
@@ -311,12 +311,12 @@ $commandes = $commandes->get();
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">
-                  <?php/* if ($client !== false) {
+                  <?php  if ($client !== false) {
                     $client = $client->fetch();
                     echo ($client['nom'] . ' ' . $client['prenom']);
                   } else {
                     echo ('Username');
-                  }*/
+                  }
                   ?>
                 </span>
               </a>
@@ -348,7 +348,7 @@ $commandes = $commandes->get();
 
           <!-- Page Heading -->
           <h1 class="h3 mb-2 text-gray-800">Commandes</h1>
-          <p class="mb-4">La liste de toutes les commandes en attente. <a target="_blank" href="https://datatables.net">official DataTables documentation</a>.</p>
+          <p class="mb-4">La liste de toutes les commandes en attente.<!-- <a target="_blank" href="https://datatables.net">official DataTables documentation</a>.--></p>
           <!-- DataTales Example -->
           <div class="card shadow mb-4">
             <div class="card-header py-3">
