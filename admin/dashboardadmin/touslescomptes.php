@@ -102,52 +102,54 @@ $commandes = $commandes->get();
 
   <!-- Heading -->
   <div class="sidebar-heading">
-    Options
-  </div>
-
-  <!-- Nav Item - Pages Collapse Menu -->
-  <li class="nav-item active">
-    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
-      <i class="fas fa-fw fa-folder"></i>
-      <span>Gestion du compte</span>
-    </a>
-    <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-      <div class="bg-white py-2 collapse-inner rounded">
-        <h6 class="collapse-header">Fonctionnalités:</h6>
-        <!-- <a class="collapse-item" href="login.html">Passer une commande</a>-->
-        <a class="collapse-item" href="touteslescommandes.php">Toutes les commandes</a>
-        <a class="collapse-item" href="touslescomptes.php">Tous les comptes</a>
-        <div class="collapse-divider"></div>
-        <h6 class="collapse-header">Autres:</h6>
-        <a class="collapse-item" href="404.html">Invitez un ami</a>
+  Options
       </div>
-    </div>
-  </li>
 
-  <!-- Nav Item - Charts -->
-  <li class="nav-item">
-    <a class="nav-link" href="graphes.php">
-      <i class="fas fa-fw fa-chart-area"></i>
-      <span>Graphes</span></a>
-  </li>
+      <!-- Nav Item - Pages Collapse Menu -->
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
+          <i class="fas fa-fw fa-folder"></i>
+          <span>Gestion du compte</span>
+        </a>
+        <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header">Fonctionnalités:</h6>
+            <!-- <a class="collapse-item" href="login.html">Passer une commande</a>-->
+            <a class="collapse-item" href="touteslescommandes.php">Toutes les commandes</a>
+            <a class="collapse-item" href="touslescomptes.php">Tous les clients</a>
+            <a class="collapse-item" href="touslescomptesstation.php">Toutes les stations</a>
+            <a class="collapse-item" href="touslescomptesstationannexe.php">Toutes les stations annexe</a>
+            <div class="collapse-divider"></div>
+            <h6 class="collapse-header">Autres:</h6>
+            <a class="collapse-item" href="404.html">Invitez un ami</a>
+          </div>
+        </div>
+      </li>
 
-  <!-- Nav Item - Tables -->
-  <li class="nav-item ">
-    <a class="nav-link" href="tables.php">
-      <i class="fas fa-fw fa-table"></i>
-      <span>Commandes</span></a>
-  </li>
+      <!-- Nav Item - Charts -->
+      <li class="nav-item">
+        <a class="nav-link" href="graphes.php">
+          <i class="fas fa-fw fa-chart-area"></i>
+          <span>Graphes</span></a>
+      </li>
 
-  <!-- Divider -->
-  <hr class="sidebar-divider d-none d-md-block">
+      <!-- Nav Item - Tables -->
+      <li class="nav-item">
+        <a class="nav-link" href="tables.php">
+          <i class="fas fa-fw fa-table"></i>
+          <span>Commandes</span></a>
+      </li>
 
-  <!-- Sidebar Toggler (Sidebar) -->
-  <div class="text-center d-none d-md-inline">
-    <button class="rounded-circle border-0" id="sidebarToggle"></button>
-  </div>
+      <!-- Divider -->
+      <hr class="sidebar-divider d-none d-md-block">
 
-</ul>
-<!-- End of Sidebar -->
+      <!-- Sidebar Toggler (Sidebar) -->
+      <div class="text-center d-none d-md-inline">
+        <button class="rounded-circle border-0" id="sidebarToggle"></button>
+      </div>
+
+    </ul>
+    <!-- End of Sidebar -->
 
 
     <!-- Content Wrapper -->
@@ -347,7 +349,7 @@ $commandes = $commandes->get();
 
           <!-- Page Heading -->
           <h1 class="h3 mb-2 text-gray-800">Comptes</h1>
-          <p class="mb-4">La liste de toutes les comptes inscrits sur la plateforme. <a target="_blank" href="https://datatables.net">official DataTables documentation</a>.</p>
+          <p class="mb-4">La liste de toutes les comptes inscrits sur la plateforme.</p>
           <!-- DataTales Example -->
           <div class="card shadow mb-4">
             <div class="card-header py-3">

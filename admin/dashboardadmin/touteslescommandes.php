@@ -348,7 +348,7 @@ $commandes = $commandes->get();
 
           <!-- Page Heading -->
           <h1 class="h3 mb-2 text-gray-800">Commandes</h1>
-          <p class="mb-4">La liste de toutes les commandes sans filtre. <a target="_blank" href="https://datatables.net">official DataTables documentation</a>.</p>
+          <p class="mb-4">La liste de toutes les commandes sans filtre. <!--<a target="_blank" href="https://datatables.net">official DataTables documentation</a>.--></p>
           <!-- DataTales Example -->
           <div class="card shadow mb-4">
             <div class="card-header py-3">
