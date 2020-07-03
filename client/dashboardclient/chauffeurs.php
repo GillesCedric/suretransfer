@@ -343,7 +343,7 @@ $client = $commandes->getClient();
 					<!-- Page Heading -->
 					<h1 class="h3 mb-2 text-gray-800">Mes chauffeurs</h1>
 					<p class="mb-4">Liste des tous vos chauffeurs inscrits sur cette plateforme.</p>
-					<div class="text-right text-xs" style="margin-bottom:20px;"><a href="nouvellecommande.php" class="d-sm-inline-block btn btn-sm btn-primary shadow-sm "><button class="btn btn-primary">Nouveau chauffeur<i class="fas fa-plus" style="margin-left:2px;"></i></button></a></div>
+					<div class="text-right text-xs" style="margin-bottom:20px;"><a href="chauffeur.php" class="d-sm-inline-block btn btn-sm btn-primary shadow-sm "><button class="btn btn-primary">Nouveau chauffeur<i class="fas fa-plus" style="margin-left:2px;"></i></button></a></div>
 
 					<!-- DataTales Example -->
 					<div class="card shadow mb-4">

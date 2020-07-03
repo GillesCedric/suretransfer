@@ -42,7 +42,7 @@ if (isset($_POST['submit'])) {
 </head>
 
 <body style="background-color:gray;height:100%;padding-top:15px;">
-    <div class="container" style="background-color:white; width:70%;border-radius:10px; height:96vh;">
+    <div class="container" style="background-color:white; width:70%;border-radius:10px; height:auto;">
 
 
         <form class="form" style="padding-top:15px;" method='POST' action="">
@@ -57,7 +57,7 @@ if (isset($_POST['submit'])) {
                 <input type="text" id="quartier" class="form-control" style="margin-right:20px;transition:.3s;" name="quartier">
             </div><br>
             <div class="form-group">
-                <label for="ville" class="">N°Tel</label>
+                <label for="tel" class="">N°Tel</label>
                 <input type="number" id="tel" class="form-control" style="margin-right:20px;transition:.3s;" name="tel">
             </div><br>
             <div class="form-group">
@@ -66,7 +66,8 @@ if (isset($_POST['submit'])) {
             </div><br>
             <div class="form-group">
                 <button type="button" class="btn btn-primary" style="width:100%">Valider</button>
-            </div>
+            </div><br>
+        </form>
     <!-- Bootstrap core JavaScript-->
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>

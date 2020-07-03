@@ -342,8 +342,8 @@ $client = $commandes->getClient();
 
           <!-- Page Heading -->
           <h1 class="h3 mb-2 text-gray-800">Mes véhicules</h1>
-          <p class="mb-4">Liste des tous vos véhicules inscrits sur cette plateforme. <a target="_blank" href="https://datatables.net">official DataTables documentation</a>.</p>
-            <div class="text-right text-xs" style="margin-bottom:20px;"><a href="nouvellecommande.php" class="d-sm-inline-block btn btn-sm btn-primary shadow-sm "><button class="btn btn-primary">Nouveau véhicule<i class="fas fa-plus" style="margin-left:2px;"></i></button></a></div>
+          <p class="mb-4">Liste des tous vos véhicules inscrits sur cette plateforme.<!-- <a target="_blank" href="https://datatables.net">official DataTables documentation</a>.--></p>
+            <div class="text-right text-xs" style="margin-bottom:20px;"><a href="vehicule.php" class="d-sm-inline-block btn btn-sm btn-primary shadow-sm "><button class="btn btn-primary">Nouveau véhicule<i class="fas fa-plus" style="margin-left:2px;"></i></button></a></div>
 
           <!-- DataTales Example -->
           <div class="card shadow mb-4">

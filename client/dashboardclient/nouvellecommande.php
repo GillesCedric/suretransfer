@@ -42,7 +42,7 @@ if (isset($_POST['submit'])) {
 </head>
 
 <body style="background-color:gray;height:100%;padding-top:15px;">
-    <div class="container" style="background-color:white; width:70%;border-radius:10px; height:96vh;">
+    <div class="container" style="background-color:white; width:70%;border-radius:10px; height:auto;">
 
 
         <form class="form" style="padding-top:15px;" method='POST' action="">
@@ -126,7 +126,7 @@ if (isset($_POST['submit'])) {
 
             <div class="form-group">
                 <button type="button" class="btn btn-primary" style="width:100%" data-target="#valider" data-toggle="modal" onclick="setMode()">Valider</button>
-            </div>
+            </div><br>
 
             <!-- Modal -->
             <div class="modal fade" id="valider" tabindex="-1" role="dialog" aria-labelledby="validerlabel">
