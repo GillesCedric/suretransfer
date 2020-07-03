@@ -42,22 +42,22 @@ if (isset($_POST['submit'])) {
 </head>
 
 <body style="background-color:gray;height:100%;padding-top:15px;">
-    <div class="container" style="background-color:white; width:70%;border-radius:10px; height:96vh;">
+    <div class="container" style="background-color:white; width:70%;border-radius:10px; height:auto;">
 
 
         <form class="form" style="padding-top:15px;" method='POST' action="">
             <p class="" style="margin:40px;font-size:18px;">Ajout d'un <span class="text-primary">pompiste</span>.</p>
             <div class="text-right text-xs" style="margin-bottom:20px;"><a href="tables.php" class="d-sm-inline-block btn btn-sm btn-primary shadow-sm "><button class="btn btn-primary" type="button">Retournez à l'acceuil <i class="fas fa-arrow-left" style="margin-left:2px;"></i></button></a></div>
             <div class="form-group">
-                <label for="ville" class="">Noms</label>
-                <input type="text" id="ville" class="form-control" style="margin-right:20px;transition:.3s;" name="ville">
+                <label for="nom" class="">Noms</label>
+                <input type="text" id="nom" class="form-control" style="margin-right:20px;transition:.3s;" name="nom">
             </div><br>
             <div class="form-group">
-                <label for="quartier" class="">Prénoms</label>
-                <input type="text" id="quartier" class="form-control" style="margin-right:20px;transition:.3s;" name="quartier">
+                <label for="prenom" class="">Prénoms</label>
+                <input type="text" id="prenom" class="form-control" style="margin-right:20px;transition:.3s;" name="prenom">
             </div><br>
             <div class="form-group">
-                <label for="ville" class="">N°Tel</label>
+                <label for="tel" class="">N°Tel</label>
                 <input type="number" id="tel" class="form-control" style="margin-right:20px;transition:.3s;" name="tel">
             </div><br>
             <div class="form-group">
@@ -65,12 +65,13 @@ if (isset($_POST['submit'])) {
                 <input type="text" id="mail" class="form-control" style="margin-right:20px;transition:.3s;" name="mail">
             </div><br>
             <div class="form-group">
-                <label for="mail" class="">N°CNI</label>
-                <input type="text" id="mail" class="form-control" style="margin-right:20px;transition:.3s;" name="mail">
+                <label for="cni" class="">N°CNI</label>
+                <input type="text" id="cni" class="form-control" style="margin-right:20px;transition:.3s;" name="cni">
             </div><br>
             <div class="form-group">
                 <button type="button" class="btn btn-primary" style="width:100%">Valider</button>
-            </div>
+            </div><br>
+        </form>
     <!-- Bootstrap core JavaScript-->
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
