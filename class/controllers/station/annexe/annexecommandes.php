@@ -22,9 +22,9 @@ class AnnexeCommandes
 		return Commande::getAll($statut);
 	}
 
-	public static function updatestatutCommande(string $numCommande, string $statut)
+	public static function updatestatutCommande(string $numCommande, string $statut, string $numCni)
 	{
-		Commande::updateStatut($numCommande, $statut);
+		Commande::updateStatut($numCommande, $statut, $numCni);
 	}
 
 	public static function updatestatut(string $numCommande, int $statut)
@@ -56,7 +56,7 @@ class AnnexeCommandes
 
 	public static function verifConnection()
 	{
-		if (isset($_SESSION['admin']) && !empty($_SESSION['admin'])) {
+		if (isset($_SESSION['annexe']) && !empty($_SESSION['annexe'])) {
 			return true;
 		}
 		App::redirect('../connexion.php');

@@ -1,9 +1,12 @@
 <?php
-require_once("../../config.php");
-require_once(CONTROLLERS_PATH . '/client/clientcommandes.php');
-$commandes = new ClientCommandes('21452565415');
-$vehicules = $commandes->getVehicule();
-$client = $commandes->getClient();
+session_start();
+require_once("../../../config.php");
+require_once(CONTROLLERS_PATH . '/station/admin/statioadmincommandes.php');
+StationAdminCommandes::verifConnection();
+$commandes = new StationAdminCommandes($_SESSION['station']);
+$commande = new StationAdminCommandes($_SESSION['station']);
+$commandes = $commandes->get2();
+$commande = $commande->get2();
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -23,7 +26,7 @@ $client = $commandes->getClient();
   <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
   <!-- Custom styles for this template-->
-  <link href="css/sb-admin-2.min.css" rel="stylesheet">
+  <link href="css/sb-admin-2.css" rel="stylesheet">
 
 </head>
 
@@ -47,7 +50,7 @@ $client = $commandes->getClient();
       <hr class="sidebar-divider my-0">
 
       <!-- Nav Item - Dashboard -->
-      <li class="nav-item ">
+      <li class="nav-item">
         <a class="nav-link" href="index.php">
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>Tableau de bord</span></a>
@@ -100,38 +103,22 @@ $client = $commandes->getClient();
       <div class="sidebar-heading">
         Options
       </div>
-
-      <!-- Nav Item - Pages Collapse Menu -->
-      <li class="nav-item active">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
-          <i class="fas fa-fw fa-folder"></i>
-          <span>Gestion du compte</span>
-        </a>
-        <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-          <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Fonctionnalités:</h6>
-            <!-- <a class="collapse-item" href="login.html">Passer une commande</a>-->
-            <a class="collapse-item" href="vehicules.php">Mes véhicules</a>
-            <a class="collapse-item" href="chauffeurs.php">Mes chauffeurs</a>
-            <div class="collapse-divider"></div>
-            <h6 class="collapse-header">Autres:</h6>
-            <a class="collapse-item" href="404.html">Invitez un ami</a>
-          </div>
-        </div>
-      </li>
-
       <!-- Nav Item - Charts -->
-      <li class="nav-item">
-        <a class="nav-link" href="graphes.php">
-          <i class="fas fa-fw fa-chart-area"></i>
-          <span>Graphes</span></a>
-      </li>
+
 
       <!-- Nav Item - Tables -->
-      <li class="nav-item">
-        <a class="nav-link" href="tables.php">
-          <i class="fas fa-fw fa-table"></i>
-          <span>Commandes</span></a>
+      <li class="nav-item active">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
+          <i class="fas fa-fw fa-cog"></i>
+          <span>Gérer les annexes.</span>
+        </a>
+        <div id="collapseThree" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header">Gestion des annexes</h6>
+            <a class="collapse-item" href="tables.php">Toutes les commandes</a>
+            <a class="collapse-item" href="annexes.php">Toutes les annexes</a>
+          </div>
+        </div>
       </li>
 
       <!-- Divider -->
@@ -305,9 +292,9 @@ $client = $commandes->getClient();
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">
-                  <?php if ($client !== false) {
-                    $client = $client->fetch();
-                    echo ($client['nom'] . ' ' . $client['prenom']);
+                  <?php if ($commande !== false) {
+                    $infos = $commande->fetch();
+                    echo ($infos['nom']);
                   } else {
                     echo ('Username');
                   }
@@ -336,52 +323,85 @@ $client = $commandes->getClient();
 
         </nav>
         <!-- End of Topbar -->
+
         <!-- Begin Page Content -->
         <div class="container-fluid">
 
           <!-- Page Heading -->
-          <h1 class="h3 mb-2 text-gray-800">Mes véhicules</h1>
-          <p class="mb-4">Liste des tous vos véhicules inscrits sur cette plateforme. <a target="_blank" href="https://datatables.net">official DataTables documentation</a>.</p>
-          <div class="text-right text-xs" style="margin-bottom:20px;"><a href="nouvellecommande.php" class="d-sm-inline-block btn btn-sm btn-primary shadow-sm "><button class="btn btn-primary">Nouveau véhicule<i class="fas fa-plus" style="margin-left:2px;"></i></button></a></div>
+          <h1 class="h3 mb-2 text-gray-800">Gérer les stations annexes</h1>
+          <p class="mb-4">Vous pourrez ici supprimer ou ajouter une station en annexe, et garder un oeil sur l'évolution . </p>
+          <div class="text-right text-xs" style="margin-bottom:20px;"><a href="ajouteruneannexe.php" class="d-sm-inline-block btn btn-sm btn-primary shadow-sm "><button class="btn btn-primary">Ajouter une station annexe<i class="fas fa-plus" style="margin-left:2px;"></i></button></a></div>
+
 
           <!-- DataTales Example -->
           <div class="card shadow mb-4">
             <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary">Liste des véhicules</h6>
+              <h6 class="m-0 font-weight-bold text-primary">Liste des commandes</h6>
             </div>
             <div class="card-body">
               <div class="table-responsive">
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                   <thead>
                     <tr>
-                      <th>Immatriculation</th>
-                      <th>Marque</th>
-                      <th>Modèle</th>
-                      <th>Couleur</th>
+                      <th>Nom</th>
+                      <th>Ville</th>
+                      <th>Quartier</th>
+                      <th>Téléphone</th>
+                      <th>Adresse Mail</th>
+                      <th>Action</th>
                     </tr>
                   </thead>
                   <tbody>
                     <?php
-                    if ($vehicules !== false) :
-                      while ($val = $vehicules->fetch()) : ?>
-                        <tr class="text-uppercase">
-                          <td>
-                            <?= $val['immat'] ?>
-                          </td>
-                          <td>
-                            <?= $val['marque'] ?>
-                          </td>
-                          <td>
-                            <?= $val['modele'] ?>
-                          </td>
-                          <td>
-                            <?= $val['couleur'] ?>
-                          </td>
-                        </tr>
+                    if ($commandes !== false) :
+                      //print_r($commandes->fetch());
+                      while ($val = $commandes->fetch()) :
+                        if (empty($val['id'])) :
+                    ?>
+                          <tr align="center">
+                            <td colspan="7">Aucune station annexe pour l'instant</td>
+                          </tr>
+                        <?php else : ?>
+                          <tr class="text-uppercase
+                          <?php
+                          if ($val['is_activated'] == 1) {
+                            echo "table-success";
+                          } else {
+                            echo "table-danger";
+                          }
+                          ?>">
+                            <td>
+                              <?= $val['nom'] ?>
+                            </td>
+                            <td>
+                              <?= $val['ville'] ?>
+                            </td>
+                            <td>
+                              <?= $val['quartier'] ?>
+                            </td>
+                            <td>
+                              <?= $val['tel'] ?>
+                            </td>
+                            <td>
+                              <?= $val['mail'] ?>
+                            </td>
+                            <td>
+                              <?php if ($val['is_activated'] == 1) : ?>
+                                <a title="Supprimer la station annexe" href="suppressionannexe.php?n=<?= $val['id'] ?>" onclick="return confirm('Etes vous sur de vouloir supprimer la station?')" class="text-decoration-none">
+                                  <i class="fas fa-trash fa-sm text-danger text-lg ml-lg-3"></i>
+                                </a>
+                              <?php else : ?>
+                                <a title="Supprimer la station annexe" href="suppressionannexe.php?n=<?= $val['id'] ?>" onclick="return confirm('Etes vous sur de vouloir supprimer la station?')" class="text-decoration-none">
+                                  <i class="fas fa-check-square fa-sm text-success text-lg ml-lg-3"></i>
+                                </a>
+                              <?php endif; ?>
+                            </td>
+                          </tr>
+                        <?php endif; ?>
                       <?php endwhile; ?>
                     <?php else : ?>
                       <tr align="center">
-                        <td colspan="7">Aucun véhicule pour l'instant</td>
+                        <td colspan="7">Aucune station annexe pour l'instant</td>
                       </tr>
                     <?php endif; ?>
                   </tbody>
@@ -422,15 +442,15 @@ $client = $commandes->getClient();
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Voulez-vous sortir?</h5>
+          <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
           <button class="close" type="button" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">×</span>
           </button>
         </div>
-        <div class="modal-body">Selectionnez "Deconnexion" pour vous deconnecter.</div>
+        <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
         <div class="modal-footer">
-          <button class="btn btn-secondary" type="button" data-dismiss="modal">Annuler</button>
-          <a class="btn btn-primary" href="../../pages/deconnexion.php">Deconnexion</a>
+          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+          <a class="btn btn-primary" href="login.html">Logout</a>
         </div>
       </div>
     </div>

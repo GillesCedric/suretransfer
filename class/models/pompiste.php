@@ -14,21 +14,13 @@ class Pompiste extends Utilisateur
 		$login = $this->generateLogin($nom);
 		$password = $this->generatePassword($nom);
 		Mail::sendMailLoginPassword($nom, $mail, $login, $password);
-		parent::__construct($mail, $login, $password, $numCni, $nom, $tel);
+		parent::__construct($mail, $login, $password, $nom, $tel, $numCni);
 		$this->isActivated = 1;
 		$this->idAnnexe = intval($idAnnexe);
 		$this->prenom = $prenom;
 	}
 
-	private function generateLogin(string $nom): string
-	{
-		return $nom . '' . rand(0, 9) . '' . rand(0, 9) . '' . rand(0, 9);
-	}
 
-	private function generatePassword(string $nom): string
-	{
-		return $nom . '' . time();
-	}
 
 	public static function verifConnect(string $value, string $password)
 	{

@@ -46,7 +46,7 @@ class PompisteCommandes
 
 	public static function verifConnection()
 	{
-		if (isset($_SESSION['admin']) && !empty($_SESSION['admin'])) {
+		if (isset($_SESSION['pompiste']) && !empty($_SESSION['pompiste'])) {
 			return true;
 		}
 		App::redirect('../connexion.php');

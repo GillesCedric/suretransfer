@@ -2,6 +2,7 @@
 session_start();
 require_once("../../config.php");
 require_once(CONTROLLERS_PATH . '/client/clientcommandes.php');
+ClientCommandes::verifConnection();
 $commandes = new ClientCommandes($_SESSION['client']);
 $client = $commandes->getClient();
 $commandes = $commandes->get();
@@ -348,7 +349,7 @@ $commandes = $commandes->get();
           <!-- Page Heading -->
           <h1 class="h3 mb-2 text-gray-800">Commandes</h1>
           <p class="mb-4">La liste de toutes les commandes déjà effectuées ainsi que leur statut. <a target="_blank" href="https://datatables.net">official DataTables documentation</a>.</p>
-          <div class="text-right text-xs" style="margin-bottom:20px;"><a href="nouvellecommande.php" class="d-sm-inline-block btn btn-sm btn-primary shadow-sm "><button class="btn btn-primary">Nouvelle commande<i class="fas fa-plus" style="margin-left:2px;"></i></button></a></div>
+          <div class="text-right text-xs" style="margin-bottom:20px;"><a href="nouvellecommande.php" class="d-sm-inline-block btn btn-sm btn-primary shadow-sm "><button class="btn btn-primary">Nouvelle commande <i class="fas fa-plus" style="margin-left:2px;"></i></button></a></div>
 
           <!-- DataTales Example -->
           <div class="card shadow mb-4">

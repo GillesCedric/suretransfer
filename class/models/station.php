@@ -2,12 +2,10 @@
 require_once('utilisateur.php');
 class Station extends Utilisateur
 {
-	protected bool $isVerified;
 
-	public function __construct(bool $isVerified, string $mail, string $login, string $password, string $numCni, string $nom, string $tel, int $createdAt, int $updatedAt)
+	public function __construct(string $mail, string $login, string $password, string $nom, string $tel)
 	{
-		parent::__construct($mail, $login, $password, $numCni, $nom, $tel, $createdAt, $updatedAt);
-		$this->isVerified = $isVerified;
+		parent::__construct($mail, $login, $password, $nom, $tel);
 	}
 
 	public static function verifConnect(string $value, string $password)
