@@ -28,7 +28,7 @@ if (isset($_POST['submit'])) {
 			<form action="" method="POST">
 				<img src="../imageindex/suretransfer.jpg" style="border-radius:50%; width:100px; height:100px; margin-top:8px;" alt="...">
 				<h3 class="title">Bienvenue</h3>
-				<div class="input-di">
+				<!--<div class="input-di">
 					<div class="di">
 						<h5 style="font-size:18px;">Compte client</h5>
 						<div class="di" style="margin-top:20px;margin-bottom:20px;color:#555;">
@@ -36,7 +36,7 @@ if (isset($_POST['submit'])) {
 							<input type="radio" id="m" name="statut" value="Particulier" class="radio" style="margin-left:70px;"><label for="m" style="margin-left:5px;">Particulier</label>
 						</div>
 					</div>
-				</div>
+				</div>-->
 				<div class="input-div one">
 					<div class="i">
 						<i class="fas fa-user"></i>
@@ -66,7 +66,7 @@ if (isset($_POST['submit'])) {
 				</div>
 				<div class="input-div one">
 					<div class="i">
-						<i class="fas fa-user"></i>
+						<i class="fas fa-tty"></i>
 					</div>
 					<div class="div">
 						<h5>Tel</h5>
@@ -75,7 +75,7 @@ if (isset($_POST['submit'])) {
 				</div>
 				<div class="input-div one">
 					<div class="i">
-						<i class="fas fa-user"></i>
+						<i class="fas fa-envelope"></i>
 					</div>
 					<div class="div">
 						<h5>Mail</h5>
@@ -84,7 +84,7 @@ if (isset($_POST['submit'])) {
 				</div>
 				<div class="input-div one">
 					<div class="i">
-						<i class="fas fa-lock"></i>
+						<i class="fas fa-pen"></i>
 					</div>
 					<div class="div">
 						<h5>Nom d'utilisateur</h5>
@@ -93,7 +93,7 @@ if (isset($_POST['submit'])) {
 				</div>
 				<div class="input-div pass">
 					<div class="i">
-						<i class="fas fa-user"></i>
+						<i class="fas fa-lock"></i>
 					</div>
 					<div class="div">
 						<h5>Mot de passe</h5>
@@ -102,7 +102,7 @@ if (isset($_POST['submit'])) {
 				</div>
 				<div class="input-div pass">
 					<div class="i">
-						<i class="fas fa-user"></i>
+						<i class="fas fa-lock"></i>
 					</div>
 					<div class="div">
 						<h5>Confirmer le mot de passe</h5>
