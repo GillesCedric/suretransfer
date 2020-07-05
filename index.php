@@ -32,7 +32,7 @@ require_once('config.php');
   <div id="main">
     <div class="text-center" style="margin-top:30px;">
       <img src="imageindex/suretransfer.jpg" style="border-radius:50%;" alt="..." width="150px" height="150px">
-      <p style="font-size:45px; color:#33ccff; font-family:Charming Strangulation">Sure Transfer</p>
+      <h1 style="font-size:45px;font-weight:bold;">Sure Transfer</h1>
     </div>
 
     <div class="container my-4">
@@ -98,16 +98,17 @@ require_once('config.php');
     <p class="text-center" style="margin-top:30px;font-family:delimax;font-size:30px">Nos services</p>
     <div class="row">
       <div class="card col-sm-4 col-xs-12" style="width:470px;margin-left:25px;">
+      <img class="card-img-bottom text-center" src="imageindex/vague1.jpg" alt="Card image" style="width:200px;height:200px;border-radius:50%;align:center">
         <div class="card-body">
           <h4 class="card-title">Espace Client</h4>
           <p class="card-text">Vous avez une société et désirez l'intégrer dans <span>sure transfer</span> ou encore
             vous ètes un particulier et désirez integrer la communauté de<span>sure transfer</span> cliquez sur ce bouton</p>
           <a href="client/entreprise/inscription.php" class="btn btn-primary">Créer un compte Client</a>
         </div>
-        <img class="card-img-bottom" src="img_avatar6.png" alt="Card image" style="width:100%">
+        
       </div>
       <div class="card col-sm-3" style="width:200px;margin-left:20px;">
-        <img class="card-img-top" src="img_avatar1.png" alt="Card image" style="width:100%">
+        <i class="fa fa-user" alt="Card image" style="color:red;width:100%"></i>
         <div class="card-body">
           <h4 class="card-title">A propos</h4>
           <p class="card-text">La communauté <span>Sure transfer</span> regroupe des entreprises, des particuliers et des stations services.

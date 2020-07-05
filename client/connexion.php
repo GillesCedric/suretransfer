@@ -48,9 +48,9 @@ if (isset($_POST['submit'])) {
 						<input type="password" class="input" name="password">
 					</div>
 				</div>
-
-				<a href="#">Mot de passe oublié?</a>
+				<a href="inscription.php" style="font-size:17px; margin-top:10px;">Pas encore de compte? Inscrivez-vous ici!</a>
 				<input type="submit" class="btn" value="Login" name="submit">
+				<a href="#">Mot de passe oublié?</a>
 			</form>
 		</div>
 	</div>
