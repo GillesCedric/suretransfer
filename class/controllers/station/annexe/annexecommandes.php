@@ -1,5 +1,5 @@
 <?php
-require_once(dirname(dirname(dirname(dirname(__DIR__)))) . '\config.php');
+require_once(dirname(dirname(dirname(dirname(__DIR__)))) . '/config.php');
 require_once(CLASS_PATH . '/dbconnection.php');
 require_once(CLASS_PATH . '/app.php');
 require_once(MODELS_PATH . '/commande.php');
@@ -100,6 +100,11 @@ class AnnexeCommandes
 	public function getNBCommande(string $statut = null)
 	{
 		return Commande::getNBCommande($this->numCni, $statut);
+	}
+
+	public function getNBCommandeAnnexe(string $statut = null)
+	{
+		return Commande::getNBCommandeAnnexe($this->numCni, $statut);
 	}
 
 	public function getNBVehicule()

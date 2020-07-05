@@ -1,5 +1,5 @@
 <?php
-require_once(dirname(dirname(dirname(__DIR__))) . '\config.php');
+require_once(dirname(dirname(dirname(__DIR__))) . '/config.php');
 require_once(CONTROLLERS_PATH . '/abstract/connection.php');
 require_once(CLASS_PATH . '/dbconnection.php');
 require_once(MODELS_PATH . '/admin.php');

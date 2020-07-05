@@ -7,4 +7,4 @@ require_once(CLASS_PATH . '/mail.php');
 $commandes = new StationAdminCommandes($_SESSION['station']);
 $numCommande = htmlspecialchars($_GET['n']);
 StationAdminCommandes::updatestatut($numCommande, 0);
-App::redirect('tables.php');
+App::redirect('annexes.php');

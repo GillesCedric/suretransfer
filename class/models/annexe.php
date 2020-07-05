@@ -84,7 +84,7 @@ class Annexe extends Station
 	{
 		$connection = new DBConnection(HOST, PORT, DBNAME, DBUSERNAME, DBPASSWORD);
 		$connection = $connection->setConnection();
-		$verif = $connection->prepare('SELECT DISTINCT annexe.tel,annexe.mail,annexe.is_activated,station.id AS id,station.nom,annexe.ville,annexe.quartier FROM station INNER JOIN annexe ON station.id=annexe.id_station  WHERE station.id=?');
+		$verif = $connection->prepare('SELECT DISTINCT annexe.tel,annexe.mail,annexe.is_activated,annexe.id AS id,station.nom,annexe.ville,annexe.quartier FROM station INNER JOIN annexe ON station.id=annexe.id_station  WHERE station.id=?');
 		$verif->execute(array($numCni));
 		if ($verif->rowcount() > 0) {
 			return $verif;

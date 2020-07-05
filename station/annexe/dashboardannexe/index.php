@@ -6,6 +6,14 @@ AnnexeCommandes::verifConnection();
 $commandes = new AnnexeCommandes($_SESSION['annexe']);
 $client = $commandes->getAnnexe();
 $commandes = $commandes->getAll('en cours');
+// $nbCommandeMois = $commandes->getDepensesMois();
+// $nbCommandeMois = $commandes->getDepensesMois();
+// $nbCommandeAnne = $commandes->getDepensesAnne();
+// $nbCommande = $commandes->getNBCommande('en attente');
+// $nbCommandetotal = $commandes->getNBCommande();
+// $nbVehicule = $commandes->getNBVehicule();
+// $nbChauffeur = $commandes->getNBChauffeur();
+// $client = $commandes->getClient();
 ?>
 <!DOCTYPE html>
 <html lang="fr">

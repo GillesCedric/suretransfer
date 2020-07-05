@@ -146,4 +146,22 @@ class Commande extends Autre
 		}
 		return false;
 	}
+
+	public static function getNBCommandeAnnexe(string $val, string $statut = null)
+	{
+
+		$connection = new DBConnection(HOST, PORT, DBNAME, DBUSERNAME, DBPASSWORD);
+		$connection = $connection->setConnection();
+		if ($statut !== null) {
+			$get = $connection->prepare('SELECT COUNT(num_commande) AS nbcommande FROM commande WHERE id_annexe=? AND statut=?');
+			$get->execute(array($val, $statut));
+		} else {
+			$get = $connection->prepare('SELECT COUNT(num_commande) AS nbcommande FROM commande WHERE id_annexe=?');
+			$get->execute(array($val));
+		}
+		if ($get->rowCount() > 0) {
+			return $get;
+		}
+		return false;
+	}
 }

@@ -413,7 +413,7 @@ $commandes = $commandes->getAll('en attente');
                           </td>
                           <td>
                             <a title="Confirmer la commande" href="confirmationcommande.php?n=<?= $val['num_commande'] ?>" onclick="return confirm('Etes vous sur de vouloir confirmer la commande?')" class="text-decoration-none">
-                              <i class="fas fa-check fa-sm text-success text-lg"></i>
+                              <i class="fas fa-check-square fa-sm text-success text-lg"></i>
                             </a>
                             <a title="Annuler la commande" href="annulationcommande.php?n=<?= $val['num_commande'] ?>" onclick="return confirm('Etes vous sur de vouloir annuler la commande?')" class="text-decoration-none">
                               <i class="fas fa-times fa-sm text-danger text-lg ml-lg-3"></i>

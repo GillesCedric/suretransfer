@@ -391,7 +391,7 @@ $commande = $commande->get2();
                                   <i class="fas fa-trash fa-sm text-danger text-lg ml-lg-3"></i>
                                 </a>
                               <?php else : ?>
-                                <a title="Supprimer la station annexe" href="suppressionannexe.php?n=<?= $val['id'] ?>" onclick="return confirm('Etes vous sur de vouloir supprimer la station?')" class="text-decoration-none">
+                                <a title="Activer la station annexe" href="activationannexe.php?n=<?= $val['id'] ?>" onclick="return confirm('Etes vous sur de vouloir activer la station?')" class="text-decoration-none">
                                   <i class="fas fa-check-square fa-sm text-success text-lg ml-lg-3"></i>
                                 </a>
                               <?php endif; ?>
