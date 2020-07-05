@@ -7,9 +7,9 @@ require_once(MODELS_PATH . '/vehicule.php');
 require_once(MODELS_PATH . '/chauffeur.php');
 require_once(MODELS_PATH . '/admin.php');
 require_once(MODELS_PATH . '/station.php');
-require_once(MODELS_PATH . '/pompiste.php');
+require_once(MODELS_PATH . '/annexe.php');
 
-class PompisteCommandes
+class StationAdminCommandes
 {
 	private string $numCni;
 	public function __construct(string $numCni)
@@ -22,31 +22,31 @@ class PompisteCommandes
 		return Commande::getAll($statut);
 	}
 
-	public static function updatestatut(string $numCommande, string $statut, string $numCni)
+	public static function updatestatut(string $numCommande, string $statut)
 	{
-		Commande::updateStatut2($numCommande, $statut, $numCni);
+		Annexe::updateStatut(intval($numCommande), intval($statut));
 	}
 
-	public function insert(string $mode, int $montant, string $vehicule, string $chauffeur, string $client, string $station, string $service)
+	public function insert(string $ville, string $quartier, string $tel, string $mail, array $station)
 	{
-		if (!empty($mode) && !empty($montant) && !empty($vehicule) && !empty($chauffeur) && !empty($client) && !empty($station) && !empty($service)) {
-			$commande = new Commande($mode, 'en attente', $montant, $vehicule, $chauffeur, $client, $station, $service);
+		if (!empty($ville) && !empty($quartier) && !empty($tel) && !empty($mail)) {
+			$commande = new Annexe($ville, $quartier, $tel, $mail, $station);
 			$commande->insert();
-			App::msg("Commande enregistrée");
+			App::msg("Annexe enregistrée");
 			App::redirect('index.php');
 		} else {
 			App::error('Veuillez remplir tous les champs');
 		}
 	}
 
-	public function getPompiste()
+	public function getAdmin()
 	{
-		return Pompiste::get($this->numCni);
+		return Admin::get($this->numCni);
 	}
 
 	public static function verifConnection()
 	{
-		if (isset($_SESSION['pompiste']) && !empty($_SESSION['pompiste'])) {
+		if (isset($_SESSION['station']) && !empty($_SESSION['station'])) {
 			return true;
 		}
 		App::redirect('../connexion.php');
@@ -64,7 +64,12 @@ class PompisteCommandes
 
 	public function get()
 	{
-		return Commande::get($this->numCni);
+		return Annexe::getStation(intval($this->numCni));
+	}
+
+	public function get2()
+	{
+		return Annexe::getStation2(intval($this->numCni));
 	}
 
 	public function getChaufffeur()

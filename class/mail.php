@@ -10,7 +10,7 @@ class Mail
 
 	public function sendMailConfirmation()
 	{
-		$client = Commande::get($this->numCommande);
+		$client = Commande::getCommande($this->numCommande);
 		$clients = $client->fetch();
 		$message = '
         <html>
@@ -57,12 +57,12 @@ class Mail
 		$header .= 'From:"suretransfer.com"<cedric.nguefack@tapmeppe.com>' . "\n";
 		$header .= 'content-Type:text/html;charset="utf-8"' . "\n";
 		$header .= 'content-Transfer-Encoding: 8bit';
-		mail($this->mailc, 'Confirmation de commande', $message, $header);
+		mail($clients['mail'], 'Confirmation de commande', $message, $header);
 	}
 
 	public function sendMailEnregistrement()
 	{
-		$client = Commande::get($this->numCommande);
+		$client = Commande::getCommande($this->numCommande);
 		$clients = $client->fetch();
 		$message = '
         <html>
@@ -109,12 +109,12 @@ class Mail
 		$header .= 'From:"suretransfer.com"<cedric.nguefack@tapmeppe.com>' . "\n";
 		$header .= 'content-Type:text/html;charset="utf-8"' . "\n";
 		$header .= 'content-Transfer-Encoding: 8bit';
-		mail($this->mailc, 'Commande enregistrée', $message, $header);
+		mail($clients['mail'], 'Commande enregistrée', $message, $header);
 	}
 
 	public function sendMailEffectue()
 	{
-		$client = Commande::get($this->numCommande);
+		$client = Commande::getCommande($this->numCommande);
 		$clients = $client->fetch();
 		$message = '
         <html>
@@ -161,12 +161,12 @@ class Mail
 		$header .= 'From:"suretransfer.com"<cedric.nguefack@tapmeppe.com>' . "\n";
 		$header .= 'content-Type:text/html;charset="utf-8"' . "\n";
 		$header .= 'content-Transfer-Encoding: 8bit';
-		mail($this->mailc, 'Commande terminé', $message, $header);
+		mail($clients['mail'], 'Commande terminé', $message, $header);
 	}
 
 	public function sendMailAnnulation()
 	{
-		$client = Commande::get($this->numCommande);
+		$client = Commande::getCommande($this->numCommande);
 		$clients = $client->fetch();
 		$message = '
         <html>
@@ -213,6 +213,56 @@ class Mail
 		$header .= 'From:"suretransfer.com"<cedric.nguefack@tapmeppe.com>' . "\n";
 		$header .= 'content-Type:text/html;charset="utf-8"' . "\n";
 		$header .= 'content-Transfer-Encoding: 8bit';
-		mail($this->mailc, 'Commande annulé', $message, $header);
+		mail($clients['mail'], 'Commande annulé', $message, $header);
+	}
+
+	public static function sendMailLoginPassword(string $nom, string $mail, string $login, string $password)
+	{
+		$message = '
+        <html>
+          <head>
+            <title>Informations de connexion
+            </title>
+            <meta charset="utf-8">
+          </head>
+          <body>
+            <font color="#303030";>
+              <div align="center">
+                <table width="600px">
+                  <tr>
+                    <td background="https://parainage-3iac.neway-agency.com/img/favicon.ico">
+                  </tr>
+                  <tr>
+                    <td>
+                      <br>
+                      <div align="center">
+                        Bonjour Mr/Mme <b>' . $nom . '</b>,
+                      </div><br>
+                      Votre login est : <b>' . $login . '</b> .<br>Votre mot de passe est : <b>' . $password . '</b> .<br><br>
+                      A bientôt sur <a href="https://suretransfer.com/">suretransfer.com</a> !<br><br><br><br><br>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <hr>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td align="center">
+                      <font size="2">
+                        Ceci est un email automatique, merci de ne pas y répondre.<br>Si vous avez un soucis? contactez nous à l\'adresse <b>cedric.nguefack@tapmeppe.com</b>
+                      </font>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            </font>
+          </body>
+        </html>';
+		$header = "MIME-version: 1.0\r\n";
+		$header .= 'From:"suretransfer.com"<cedric.nguefack@tapmeppe.com>' . "\n";
+		$header .= 'content-Type:text/html;charset="utf-8"' . "\n";
+		$header .= 'content-Transfer-Encoding: 8bit';
+		mail($mail, 'Commande annulé', $message, $header);
 	}
 }

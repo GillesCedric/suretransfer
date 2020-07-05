@@ -1,12 +1,12 @@
 <?php
 session_start();
-require_once("../../../config.php");
+require_once("../../config.php");
 require_once(CONTROLLERS_PATH . '/station/pompiste/pompistecommandes.php');
 require_once(CLASS_PATH . '/app.php');
 require_once(CLASS_PATH . '/mail.php');
-$commandes = new PompisteCommandes($_SESSION['pompiste']);
+$commandes = new AnnexeCommandes($_SESSION['annexe']);
 $numCommande = htmlspecialchars($_GET['n']);
-PompisteCommandes::updatestatut($numCommande, 'effectué', $_SESSION['pompiste']);
+AnnexeCommandes::updatestatutCommande($numCommande, 'rejeté', $_SESSION['annexe']);
 $mail = new Mail($numCommande);
-$mail->sendMailEffectue();
-App::redirect('index.php');
+$mail->sendMailAnnulation();
+App::redirect('tables.php');

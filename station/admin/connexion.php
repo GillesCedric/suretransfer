@@ -1,9 +1,9 @@
 <?php
 session_start();
 require_once("../../config.php");
-require_once(CONTROLLERS_PATH . "/station/admin/stationconnection.php");
+require_once(CONTROLLERS_PATH . "/station/admin/stationadminconnection.php");
 if (isset($_POST['submit'])) {
-	$client = new StationConnection($_POST['login'], $_POST['password']);
+	$client = new StationAdminConnection($_POST['login'], $_POST['password']);
 }
 ?>
 <!DOCTYPE html>

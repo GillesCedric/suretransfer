@@ -13,7 +13,7 @@ if ($stations !== false) {
 }
 $annexe = $commandes->getStationAnnexe();
 if (isset($_POST['submit'])) {
-    $commandes->insert($_POST['mode'], intval($_POST['montant']), $_POST['vehicule'], $_POST['chauffeur'], '21452565415', $_POST['annexe'], $_POST['service']);
+    $commandes->insert($_POST['mode'], intval($_POST['montant']), $_POST['vehicule'], $_POST['chauffeur'], $_SESSION['client'], $_POST['annexe'], $_POST['service']);
 }
 ?>
 <!DOCTYPE html>

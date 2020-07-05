@@ -6,9 +6,9 @@ abstract class Utilisateur extends Personne
 	protected string $login;
 	protected string $password;
 
-	public function __construct(string $mail, string $login, string $password, string $numCni, string $nom, string $tel)
+	public function __construct(string $mail, string $login, string $password, string $nom, string $tel, ?string $numCni = null)
 	{
-		parent::__construct($numCni, $nom, $tel);
+		parent::__construct($nom, $tel, $numCni);
 		$this->mail = $mail;
 		$this->login = $login;
 		$this->password = $password;
@@ -19,4 +19,14 @@ abstract class Utilisateur extends Personne
 	public abstract static function connect(string $value): void;
 
 	public abstract static function verifConnect(string $value, string $password);
+
+	protected function generateLogin(string $nom): string
+	{
+		return $nom . '' . rand(0, 9) . '' . rand(0, 9) . '' . rand(0, 9);
+	}
+
+	protected function generatePassword(string $nom): string
+	{
+		return $nom . '' . time();
+	}
 }

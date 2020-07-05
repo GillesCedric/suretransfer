@@ -1,11 +1,11 @@
 <?php
 abstract class Personne
 {
-	protected string $numCni;
+	protected ?string $numCni;
 	protected string $nom;
 	protected string $tel;
 
-	public function __construct(string $numCni, string $nom, string $tel)
+	public function __construct(string $nom, string $tel, ?string $numCni = null)
 	{
 		$this->numCni = $numCni;
 		$this->nom = $nom;

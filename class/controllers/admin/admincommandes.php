@@ -22,9 +22,9 @@ class AdminCommandes
 		return Commande::getAll($statut);
 	}
 
-	public static function updatestatut(string $numCommande, string $statut)
+	public static function updatestatut(string $numCommande, string $statut, string $numCni)
 	{
-		Commande::updateStatut($numCommande, $statut);
+		Commande::updateStatut($numCommande, $statut, $numCni);
 	}
 
 	public function insert(string $mode, int $montant, string $vehicule, string $chauffeur, string $client, string $station, string $service)

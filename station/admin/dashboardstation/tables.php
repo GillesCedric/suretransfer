@@ -1,6 +1,12 @@
 <?php
+session_start();
 require_once("../../../config.php");
-
+require_once(CONTROLLERS_PATH . '/station/admin/statioadmincommandes.php');
+StationAdminCommandes::verifConnection();
+$commandes = new StationAdminCommandes($_SESSION['station']);
+$commande = new StationAdminCommandes($_SESSION['station']);
+$commandes = $commandes->get();
+$commande = $commande->get();
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -98,13 +104,21 @@ require_once("../../../config.php");
         Options
       </div>
       <!-- Nav Item - Charts -->
-      
+
 
       <!-- Nav Item - Tables -->
       <li class="nav-item active">
-        <a class="nav-link" href="tables.php">
-          <i class="fas fa-fw fa-table"></i>
-          <span>Gérer les annexes.</span></a>
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
+          <i class="fas fa-fw fa-cog"></i>
+          <span>Gérer les annexes.</span>
+        </a>
+        <div id="collapseThree" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header">Gestion des annexes</h6>
+            <a class="collapse-item" href="tables.php">Toutes les commandes</a>
+            <a class="collapse-item" href="annexes.php">Toutes les annexes</a>
+          </div>
+        </div>
       </li>
 
       <!-- Divider -->
@@ -278,12 +292,12 @@ require_once("../../../config.php");
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">
-                  <?php /* if ($client !== false) {
-                    $client = $client->fetch();
-                    echo ($client['nom'] . ' ' . $client['prenom']);
+                  <?php if ($commande !== false) {
+                    $infos = $commande->fetch();
+                    echo ($infos['nom']);
                   } else {
                     echo ('Username');
-                  }*/
+                  }
                   ?>
                 </span>
               </a>
@@ -338,20 +352,58 @@ require_once("../../../config.php");
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                      <td>Tiger Nixon</td>
-                      <td>System Architect</td>
-                      <td>Edinburgh</td>
-                      <td>61</td>
-                      <td>2011/04/25</td>
-                      <td align="center" style="align-items:center;"> 
-                          <button type="button" style="background:none; border:none;">
-                            <i class="fas fa-trash fa-sm text-danger" style="font-size:20px;"></i>
-                          </button>
-                         
-                        </td>
-                    </tr>
-                    
+                    <?php
+                    if ($commandes !== false) :
+                      //print_r($commandes->fetch());
+                      while ($val = $commandes->fetch()) :
+                        if (empty($val['id'])) :
+                    ?>
+                          <tr align="center">
+                            <td colspan="7">Aucune station annexe pour l'instant</td>
+                          </tr>
+                        <?php else : ?>
+                          <tr class="text-uppercase
+                          <?php
+                          if ($val['is_activated'] == 1) {
+                            echo "table-success";
+                          } else {
+                            echo "table-danger";
+                          }
+                          ?>">
+                            <td>
+                              <?= $val['nom'] ?>
+                            </td>
+                            <td>
+                              <?= $val['ville'] ?>
+                            </td>
+                            <td>
+                              <?= $val['quartier'] ?>
+                            </td>
+                            <td>
+                              <?= $val['totalcommande'] ?>
+                            </td>
+                            <td>
+                              <?= $val['totalmontant'] . ' Fcfa' ?>
+                            </td>
+                            <td>
+                              <?php if ($val['is_activated'] == 1) : ?>
+                                <a title="Supprimer la station annexe" href="suppressionannexe.php?n=<?= $val['id'] ?>" onclick="return confirm('Etes vous sur de vouloir supprimer la station?')" class="text-decoration-none">
+                                  <i class="fas fa-trash fa-sm text-danger text-lg ml-lg-3"></i>
+                                </a>
+                              <?php else : ?>
+                                <a title="Supprimer la station annexe" href="suppressionannexe.php?n=<?= $val['id'] ?>" onclick="return confirm('Etes vous sur de vouloir supprimer la station?')" class="text-decoration-none">
+                                  <i class="fas fa-check-square fa-sm text-success text-lg ml-lg-3"></i>
+                                </a>
+                              <?php endif; ?>
+                            </td>
+                          </tr>
+                        <?php endif; ?>
+                      <?php endwhile; ?>
+                    <?php else : ?>
+                      <tr align="center">
+                        <td colspan="7">Aucune station annexe pour l'instant</td>
+                      </tr>
+                    <?php endif; ?>
                   </tbody>
                 </table>
               </div>

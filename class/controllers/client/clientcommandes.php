@@ -33,6 +33,30 @@ class ClientCommandes
 		}
 	}
 
+	public function insertVehicule(string $immat, string $marque, string $modele, string $couleur, string $client)
+	{
+		if (!empty($immat) && !empty($marque) && !empty($modele) && !empty($couleur) && !empty($client)) {
+			$commande = new Vehicule($immat, $marque, $modele, $couleur, $client);
+			$commande->insert();
+			App::msg("Véhicule enregistrée");
+			App::redirect('index.php');
+		} else {
+			App::error('Veuillez remplir tous les champs');
+		}
+	}
+
+	public function insertChauffeur(string $numCni, string $nom, string $prenom, string $tel, string $client)
+	{
+		if (!empty($numCni) && !empty($nom) && !empty($prenom) && !empty($tel) && !empty($client)) {
+			$commande = new Chauffeur($numCni, $nom, $prenom, $tel, $client);
+			$commande->insert();
+			App::msg("Chauffeur enregistrée");
+			App::redirect('index.php');
+		} else {
+			App::error('Veuillez remplir tous les champs');
+		}
+	}
+
 	public function getClient()
 	{
 		return Client::get($this->numCni);
