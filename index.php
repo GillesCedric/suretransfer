@@ -95,36 +95,36 @@ require_once('config.php');
         </div>
       </div>
     </div>
-    <p class="text-center" style="margin-top:30px;font-family:delimax;font-size:30px">Nos services</p>
+    <h1 class="text-center" style="margin-top:30px;font-size:30px">Nos services</h1>
     <div class="row">
-      <div class="card col-sm-4 col-xs-12" style="width:470px;margin-left:25px;">
-      <img class="card-img-bottom text-center" src="imageindex/vague1.jpg" alt="Card image" style="width:200px;height:200px;border-radius:50%;align:center">
+      <div class="card col-md-4" style="margin-left:25px;">
+        <img class="img-responsive center-block text-center rounded-circle" src="imageindex/vague1.jpg" alt="Card image" style="width: 150px; height:150px;margin: 0 auto;margin-top:10px;">
         <div class="card-body">
-          <h4 class="card-title">Espace Client</h4>
-          <p class="card-text">Vous avez une société et désirez l'intégrer dans <span>sure transfer</span> ou encore
+          <h4 class="card-title text-center">Espace Client</h4>
+          <p class="card-text text-justify">Vous avez une société et désirez l'intégrer dans <span>sure transfer</span> ou encore
             vous ètes un particulier et désirez integrer la communauté de<span>sure transfer</span> cliquez sur ce bouton</p>
-          <a href="client/entreprise/inscription.php" class="btn btn-primary">Créer un compte Client</a>
+          <div class="text-center"><a href="client/entreprise/inscription.php" class="btn btn-primary center-block text-center">Créer un compte Client</a></div>
         </div>
-        
+
       </div>
-      <div class="card col-sm-3" style="width:200px;margin-left:20px;">
-        <i class="fa fa-user" alt="Card image" style="color:red;width:100%"></i>
+      <div class="card col-md-3" style="margin-left:20px;">
+        <img class="img-responsive center-block text-center rounded-circle" src="imageindex/vague1.jpg" alt="Card image" style="width: 150px; height:150px;margin: 0 auto;margin-top:10px;">
         <div class="card-body">
-          <h4 class="card-title">A propos</h4>
-          <p class="card-text">La communauté <span>Sure transfer</span> regroupe des entreprises, des particuliers et des stations services.
+          <h4 class="card-title text-center">A propos</h4>
+          <p class="card-text text-justify">La communauté <span>Sure transfer</span> regroupe des entreprises, des particuliers et des stations services.
             L'application sert donc d'interface entre les utilisateurs et les stations services dans le cadre du paiement de la consommation d'essence ou de
             carburant. </p>
-          <a href="#" class="btn btn-primary">En savoir plus</a>
+          <div class="text-center"><a href="#" class="btn btn-primary">En savoir plus</a></div>
         </div>
       </div>
-      <div class="card col-sm-4" style="width:470px;margin-left:20px;">
+      <div class="card col-md-4" style="margin-left:20px;">
+        <img class="img-responsive center-block text-center rounded-circle" src="imageindex/vague1.jpg" alt="Card image" style="width: 150px; height:150px;margin: 0 auto;margin-top:10px;">
         <div class="card-body">
-          <h4 class="card-title">Espace Station</h4>
-          <p class="card-text">Vous avez une station et désirez la faire intégrer dans la communauté de <span>Sure Transfer</span>
+          <h4 class="card-title text-center">Espace Station</h4>
+          <p class="card-text text-justify">Vous avez une station et désirez la faire intégrer dans la communauté de <span>Sure Transfer</span>
             Pour plus de sécurité vous devez nous contacter afin d'établir votre profil.</p>
-          <a href="#" class="btn btn-primary">Nous contacter</a>
+          <div class="text-center"><a href="#" class="btn btn-primary">Nous contacter</a></div>
         </div>
-        <img class="card-img-bottom" src="img_avatar6.png" alt="Card image" style="width:100%">
       </div>
     </div>
   </div>

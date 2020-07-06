@@ -6,17 +6,17 @@ require_once(MODELS_PATH . '/client.php');
 
 class ClientInscription extends Inscription
 {
-	public function __construct(string $numCni, string $nom, string $prenom, string $tel, string $mail, string $login, string $password, string $confirmpassword, string $statut)
+	public function __construct(string $numCni, string $nom, string $prenom, string $tel, string $mail, string $login, string $password, string $confirmpassword)
 	{
-		parent::__construct($numCni, $nom, $prenom, $tel, $mail, $login, $password, $confirmpassword, $statut);
-		if (!empty($this->numCni) && !empty($this->nom) && !empty($this->prenom) && !empty($this->tel) && !empty($this->mail) && !empty($this->login) && !empty($this->password) && !empty($this->confirmpassword) && !empty($this->statut)) {
+		parent::__construct($numCni, $nom, $prenom, $tel, $mail, $login, $password, $confirmpassword);
+		if (!empty($this->numCni) && !empty($this->nom) && !empty($this->prenom) && !empty($this->tel) && !empty($this->mail) && !empty($this->login) && !empty($this->password) && !empty($this->confirmpassword)) {
 			if ($this->password == $this->confirmpassword) {
 				if (Client::verifLogin($login)) {
 					if (Client::verifMail($mail)) {
-						$client = new Client($this->prenom, $this->mail, $this->login, $this->password, $this->numCni, $this->nom, $this->tel, $this->statut);
+						$client = new Client($this->prenom, $this->mail, $this->login, $this->password, $this->numCni, $this->nom, $this->tel);
 						$client->insert();
 						App::msg('Inscription effectué');
-						App::redirect('connection.php');
+						App::redirect('connexion.php');
 					} else {
 						App::error('Cette addresse mail est déjà utilisé');
 					}

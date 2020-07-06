@@ -2,7 +2,7 @@
 require("../config.php");
 require_once(CONTROLLERS_PATH . "/client/clientinscription.php");
 if (isset($_POST['submit'])) {
-	$client = new ClientInscription($_POST['numcni'], $_POST['nom'], $_POST['prenom'], $_POST['tel'], $_POST['mail'], $_POST['login'], $_POST['password'], $_POST['confirmpassword'], $_POST['statut']);
+	$client = new ClientInscription($_POST['numcni'], $_POST['nom'], $_POST['prenom'], $_POST['tel'], $_POST['mail'], $_POST['login'], $_POST['password'], $_POST['confirmpassword']);
 }
 ?>
 <!DOCTYPE html>
@@ -109,7 +109,7 @@ if (isset($_POST['submit'])) {
 						<input type="password" class="input" name="confirmpassword">
 					</div>
 				</div>
-				<input type="submit" class="btn" value="Login" name="submit">
+				<input type="submit" class="btn" value="S'inscrire" name="submit">
 			</form>
 
 		</div>

@@ -5,22 +5,20 @@ require_once(CLASS_PATH . '/dbconnection.php');
 class Client extends Utilisateur
 {
 	protected string $prenom;
-	private string $statut;
 
-	public function __construct(string $prenom, string $mail, string $login, string $password, string $numCni, string $nom, string $tel, string $statut)
+	public function __construct(string $prenom, string $mail, string $login, string $password, string $numCni, string $nom, string $tel)
 	{
 		parent::__construct($mail, $login, $password, $numCni, $nom, $tel);
 		$this->prenom = $prenom;
-		$this->statut = $statut;
 	}
 
 	public function insert()
 	{
 		$connection = new DBConnection(HOST, PORT, DBNAME, DBUSERNAME, DBPASSWORD);
 		$connection = $connection->setConnection();
-		$insert = $connection->prepare('INSERT INTO client(num_cni,nom,prenom,tel,mail,login,password,statut,created_at,updated_at) VALUES (?,?,?,?,?,?,?,?,?,?)');
+		$insert = $connection->prepare('INSERT INTO client(num_cni,nom,prenom,tel,mail,login,password,created_at,updated_at) VALUES (?,?,?,?,?,?,?,?,?)');
 		$date = date('Y-m-d H:i:s');
-		$insert = $insert->execute(array($this->numCni, $this->nom, $this->prenom, $this->tel, $this->mail, $this->login, $this->password, $this->statut, $date, $date));
+		$insert = $insert->execute(array($this->numCni, $this->nom, $this->prenom, $this->tel, $this->mail, $this->login, $this->password, $date, $date));
 	}
 
 	public static function verifLogin(string $login): bool
