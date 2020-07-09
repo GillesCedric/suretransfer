@@ -18,12 +18,12 @@ define('SECTION_PATH', GLOBAL_PATH . '/section');
 
 define('FILE_PATH', GLOBAL_PATH . '/file');
 
-define('HOST', 'localhost');
+define('HOST', 'zpfp07ebhm2zgmrm.chr7pe7iynqr.eu-west-1.rds.amazonaws.com');
 
-define('PORT', '3308');
+define('PORT', '3306');
 
-define('DBNAME', 'suretransfer');
+define('DBNAME', 'v9sqxqzfn7addfjq');
 
-define('DBUSERNAME', 'root');
+define('DBUSERNAME', 'xe8drqagz89idwwm');
 
-define('DBPASSWORD', '');
+define('DBPASSWORD', 'ykij44ee0edspcmm');
