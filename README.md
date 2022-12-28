@@ -1,2 +1,2 @@
 # suretransfer
-suretransfer app web
+Application Web en PHP permettant la gestion d'une station de carburant
